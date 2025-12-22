@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEXX - Divine Shadow Archives</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a1a 50%, #0a0a1a 100%);
+            color: #00ff00;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at top, rgba(139, 71, 137, 0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom, rgba(0, 255, 0, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        @keyframes glow {
+            0%, 100% { 
+                text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
+            }
+            50% { 
+                text-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00, 0 0 50px #8b4789;
+            }
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.85);
+            border: 3px solid #00ff00;
+            border-radius: 15px;
+            padding: 50px;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 
+                0 0 30px rgba(0, 255, 0, 0.5),
+                0 0 60px rgba(139, 71, 137, 0.3),
+                inset 0 0 20px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 1;
+            animation: flicker 3s infinite;
+        }
+
+        .shadow-symbol {
+            text-align: center;
+            font-size: 4em;
+            margin-bottom: 20px;
+            animation: glow 2s infinite;
+            color: #00ff00;
+        }
+
+        h1 {
+            text-align: center;
+            color: #00ff00;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+            letter-spacing: 3px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #8b4789;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            text-shadow: 0 0 5px #8b4789;
+        }
+
+        .worship-text {
+            text-align: center;
+            color: #00ff00;
+            font-style: italic;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+            opacity: 0.8;
+        }
+
+        .password-section {
+            margin: 30px 0;
+        }
+
+        .password-section label {
+            display: block;
+            margin-bottom: 10px;
+            color: #00ff00;
+            font-size: 1.1em;
+            text-shadow: 0 0 5px #00ff00;
+        }
+
+        .password-section input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(0, 20, 0, 0.8);
+            border: 2px solid #00ff00;
+            border-radius: 5px;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+            box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.3);
+        }
+
+        .password-section input:focus {
+            outline: none;
+            border-color: #8b4789;
+            box-shadow: 0 0 15px rgba(139, 71, 137, 0.5);
+        }
+
+        .access-button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 15px;
+            background: linear-gradient(135deg, rgba(0, 60, 0, 0.8) 0%, rgba(139, 71, 137, 0.6) 100%);
+            border: 2px solid #00ff00;
+            border-radius: 8px;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 5px #00ff00;
+        }
+
+        .access-button:hover {
+            background: linear-gradient(135deg, rgba(0, 80, 0, 0.9) 0%, rgba(139, 71, 137, 0.8) 100%);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 1em;
+            text-shadow: 0 0 5px currentColor;
+            min-height: 24px;
+        }
+
+        .error-message {
+            color: #ff0000;
+        }
+
+        .success-message {
+            color: #00ff00;
+        }
+
+        .info-text {
+            text-align: center;
+            color: #8b4789;
+            font-size: 0.9em;
+            margin-top: 30px;
+            opacity: 0.7;
+            font-style: italic;
+        }
+
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.15),
+                rgba(0, 0, 0, 0.15) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        @keyframes redirect {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .redirecting {
+            animation: redirect 0.5s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="scanlines"></div>
+    
+    <div class="container">
+        <div class="shadow-symbol">☗</div>
+        <h1>LEXX ARCHIVES</h1>
+        <div class="subtitle">Divine Shadow Database</div>
+        <div class="worship-text">"I Worship His Shadow"</div>
+
+        <div class="password-section">
+            <label for="password">Enter Security Clearance Code:</label>
+            <input 
+                type="password" 
+                id="password" 
+                placeholder="████████████"
+                autocomplete="off"
+            >
+            <button class="access-button" id="accessButton">REQUEST ACCESS</button>
+            <div class="message" id="message"></div>
+        </div>
+
+        <div class="info-text">
+            Enter your security clearance code and request access to view character files
+        </div>
+    </div>
+
+    <script>
+        const passwordInput = document.getElementById('password');
+        const accessButton = document.getElementById('accessButton');
+        const messageDiv = document.getElementById('message');
+
+        // Password to file mapping - each password directly maps to a specific character sheet
+        const passwordMap = {
+            // Giggarota passwords
+            "Giggarota": "Giggarota2.html",
+            "G1445": "Giggarota3.html",
+            "Brains": "Giggarota5.html",
+            
+            // Thodin/Kia passwords
+            "Thodin": "Thodin2.html",
+            "T1313": "Thodin3.html",
+            "Kai": "Thodin5.html",
+            
+            // Zev passwords
+            "Zev": "Zev2.html",
+            "Z6969": "Zev3.html",
+            "ClusterLizard": "Zev5.html",
+            
+            // Stanley passwords
+            "Stanley": "Stanley2.html",
+            "S713": "Stanley3.html",
+            "Captain": "Stanley5.html"
+        };
+
+        function checkPassword() {
+            const enteredPassword = passwordInput.value.trim();
+            
+            if (enteredPassword === '') {
+                showMessage('Please enter a security code', 'error');
+                return;
+            }
+
+            // Check if password exists in the map
+            if (passwordMap[enteredPassword]) {
+                showMessage('ACCESS GRANTED - Redirecting...', 'success');
+                document.querySelector('.container').classList.add('redirecting');
+                
+                // Redirect after a brief delay for visual feedback
+                setTimeout(() => {
+                    window.location.href = passwordMap[enteredPassword];
+                }, 1500);
+            } else {
+                showMessage('INVALID CODE - ACCESS DENIED', 'error');
+                passwordInput.value = '';
+                
+                // Shake effect
+                passwordInput.style.animation = 'none';
+                setTimeout(() => {
+                    passwordInput.style.animation = '';
+                }, 10);
+            }
+        }
+
+        function showMessage(text, type) {
+            messageDiv.textContent = text;
+            messageDiv.className = 'message ' + (type === 'error' ? 'error-message' : 'success-message');
+        }
+
+        // Button click handler
+        accessButton.addEventListener('click', checkPassword);
+
+        // Enter key handler
+        passwordInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+
+        // Clear message when typing
+        passwordInput.addEventListener('input', function() {
+            if (messageDiv.classList.contains('error-message')) {
+                messageDiv.textContent = '';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thodin - Level 1 Paladin</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f6f0 0%, #e8e4d8 100%);
+            color: #2c2416;
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #b8860b;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffd700 0%, #daa520 100%);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(184, 134, 11, 0.3);
+        }
+        
+        h1 {
+            margin: 5px 0;
+            color: #ffffff;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-style: italic;
+            color: #2c2416;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+        }
+        
+        .stat-block {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .stat {
+            text-align: center;
+            padding: 10px;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+            border: 2px solid #b8860b;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(184, 134, 11, 0.2);
+        }
+        
+        .stat-name {
+            font-weight: bold;
+            font-size: 0.8em;
+            color: #b8860b;
+        }
+        
+        .stat-value {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #2c2416;
+        }
+        
+        .stat-modifier {
+            font-size: 1.2em;
+            color: #666;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .info-box {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f6f0 100%);
+            padding: 15px;
+            border: 2px solid #b8860b;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(184, 134, 11, 0.2);
+        }
+        
+        .info-box h3 {
+            margin-top: 0;
+            color: #b8860b;
+            border-bottom: 2px solid #daa520;
+            padding-bottom: 5px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(184, 134, 11, 0.15);
+        }
+        
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #daa520;
+        }
+        
+        th {
+            background: linear-gradient(135deg, #b8860b 0%, #daa520 100%);
+            color: #fff;
+            font-weight: bold;
+        }
+        
+        .feature-box {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f6f0 100%);
+            padding: 15px;
+            margin: 15px 0;
+            border: 2px solid #b8860b;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(184, 134, 11, 0.2);
+        }
+        
+        .feature-box h4 {
+            color: #b8860b;
+            margin-top: 15px;
+        }
+        
+        .feature-box h4:first-child {
+            margin-top: 0;
+        }
+        
+        ul {
+            margin: 5px 0;
+        }
+        
+        .spell-slot {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #b8860b;
+            margin: 2px;
+            cursor: pointer;
+            background-color: #fff;
+            border-radius: 3px;
+        }
+        
+        .spell-slot.checked {
+            background: linear-gradient(135deg, #ffd700 0%, #daa520 100%);
+        }
+        
+        .quote {
+            font-style: italic;
+            text-align: center;
+            color: #2c2416;
+            margin: 20px 0;
+            padding: 15px;
+            background: linear-gradient(135deg, #ffd700 0%, #f0e68c 100%);
+            border-left: 4px solid #b8860b;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(184, 134, 11, 0.3);
+        }
+        
+        hr {
+            border: none;
+            border-top: 2px solid #daa520;
+            margin: 20px 0;
+        }
+        
+        .hp-input {
+            width: 60px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            border: 2px solid #b8860b;
+            border-radius: 3px;
+            padding: 5px;
+            background-color: #fff;
+        }
+        
+        .hp-input:focus {
+            outline: none;
+            border-color: #ffd700;
+            box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>THODIN</h1>
+        <p class="subtitle">Warforged Soldier of Justice</p>
+        <p style="color: #2c2416; font-weight: bold;"><strong>Level 1 Paladin</strong> | Warforged | Lawful Neutral</p>
+    </div>
+
+    <div class="stat-block">
+        <div class="stat">
+            <div class="stat-name">STR</div>
+            <div class="stat-value">16</div>
+            <div class="stat-modifier">+3</div>
+        </div>
+        <div class="stat">
+            <div class="stat-name">DEX</div>
+            <div class="stat-value">10</div>
+            <div class="stat-modifier">+0</div>
+        </div>
+        <div class="stat">
+            <div class="stat-name">CON</div>
+            <div class="stat-value">16</div>
+            <div class="stat-modifier">+3</div>
+        </div>
+        <div class="stat">
+            <div class="stat-name">INT</div>
+            <div class="stat-value">8</div>
+            <div class="stat-modifier">-1</div>
+        </div>
+        <div class="stat">
+            <div class="stat-name">WIS</div>
+            <div class="stat-value">12</div>
+            <div class="stat-modifier">+1</div>
+        </div>
+        <div class="stat">
+            <div class="stat-name">CHA</div>
+            <div class="stat-value">13</div>
+            <div class="stat-modifier">+1</div>
+        </div>
+    </div>
+
+    <div class="info-grid">
+        <div class="info-box">
+            <h3>COMBAT STATS</h3>
+            <p><strong>Armor Class:</strong> 19 (Chain Mail + Shield + Integrated Protection)</p>
+            <p><strong>Initiative:</strong> +0</p>
+            <p><strong>Speed:</strong> 30 ft.</p>
+            <p><strong>Hit Dice:</strong> 1d10</p>
+            <p><strong>Proficiency Bonus:</strong> +2</p>
+        </div>
+        
+        <div class="info-box">
+            <h3>HIT POINTS</h3>
+            <p><strong>Maximum HP:</strong> 13</p>
+            <p><strong>Current HP:</strong> <input type="number" class="hp-input" id="current-hp" value="13" min="0" max="13"></p>
+            <p><strong>Temporary HP:</strong> 0</p>
+        </div>
+    </div>
+
+    <h3>SAVING THROWS</h3>
+    <table>
+        <tr>
+            <th>Ability</th>
+            <th>Modifier</th>
+            <th>Proficient</th>
+        </tr>
+        <tr>
+            <td>Strength</td>
+            <td>+3</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Dexterity</td>
+            <td>+0</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Constitution</td>
+            <td>+3</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Intelligence</td>
+            <td>-1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Wisdom</td>
+            <td>+3</td>
+            <td>✓</td>
+        </tr>
+        <tr>
+            <td>Charisma</td>
+            <td>+3</td>
+            <td>✓</td>
+        </tr>
+    </table>
+
+    <h3>SKILLS</h3>
+    <table>
+        <tr>
+            <th>Skill</th>
+            <th>Modifier</th>
+            <th>Proficient</th>
+        </tr>
+        <tr>
+            <td>Acrobatics (DEX)</td>
+            <td>+0</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Animal Handling (WIS)</td>
+            <td>+1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Arcana (INT)</td>
+            <td>-1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Athletics (STR)</td>
+            <td>+5</td>
+            <td>✓</td>
+        </tr>
+        <tr>
+            <td>Deception (CHA)</td>
+            <td>+1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>History (INT)</td>
+            <td>-1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Insight (WIS)</td>
+            <td>+3</td>
+            <td>✓</td>
+        </tr>
+        <tr>
+            <td>Intimidation (CHA)</td>
+            <td>+3</td>
+            <td>✓</td>
+        </tr>
+        <tr>
+            <td>Investigation (INT)</td>
+            <td>-1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Medicine (WIS)</td>
+            <td>+1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Nature (INT)</td>
+            <td>-1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Perception (WIS)</td>
+            <td>+1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Performance (CHA)</td>
+            <td>+1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Persuasion (CHA)</td>
+            <td>+1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Religion (INT)</td>
+            <td>+1</td>
+            <td>✓</td>
+        </tr>
+        <tr>
+            <td>Sleight of Hand (DEX)</td>
+            <td>+0</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Stealth (DEX)</td>
+            <td>+0</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Survival (WIS)</td>
+            <td>+1</td>
+            <td></td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <h3>ATTACKS & EQUIPMENT</h3>
+    <table>
+        <tr>
+            <th>Weapon</th>
+            <th>Attack Bonus</th>
+            <th>Damage</th>
+        </tr>
+        <tr>
+            <td>Longsword</td>
+            <td>+5</td>
+            <td>1d8+3 slashing (1d10+3 two-handed)</td>
+        </tr>
+        <tr>
+            <td>Javelin</td>
+            <td>+5</td>
+            <td>1d6+3 piercing (range 30/120)</td>
+        </tr>
+    </table>
+
+    <div class="feature-box">
+        <h4>Equipment</h4>
+        <ul>
+            <li>Chain Mail (AC 16)</li>
+            <li>Shield (+2 AC)</li>
+            <li>Longsword</li>
+            <li>5 Javelins</li>
+            <li>Explorer's Pack</li>
+            <li>Holy Symbol (amulet)</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h3>RACIAL TRAITS (WARFORGED)</h3>
+    <div class="feature-box">
+        <h4>Constructed Resilience</h4>
+        <p>You have advantage on saving throws against being poisoned, and you have resistance to poison damage. You don't need to eat, drink, or breathe. You are immune to disease. You don't need to sleep, and magic can't put you to sleep.</p>
+        
+        <h4>Sentry's Rest</h4>
+        <p>When you take a long rest, you must spend at least six hours in an inactive, motionless state, rather than sleeping. In this state, you appear inert, but you remain conscious.</p>
+        
+        <h4>Integrated Protection</h4>
+        <p>Your body has built-in defensive layers, which can be enhanced with armor. You gain a +1 bonus to Armor Class. You can don only armor with which you have proficiency. To don armor, you must incorporate it into your body over the course of 1 hour. To doff armor, you must spend 1 hour removing it. You can rest while donning or doffing armor in this way.</p>
+        
+        <h4>Specialized Design</h4>
+        <p>You gain one skill proficiency and one tool proficiency of your choice. (Athletics and Smith's Tools selected)</p>
+    </div>
+
+    <hr>
+
+    <h3>CLASS FEATURES (PALADIN)</h3>
+    <div class="feature-box">
+        <h4>Divine Sense</h4>
+        <p>As an action, you can detect good and evil. Until the end of your next turn, you can sense anything affected by the hallow spell or know the location of any celestial, fiend, or undead within 60 feet of you that is not behind total cover.</p>
+        <p><strong>Uses:</strong> 4 per long rest (1 + CHA modifier)</p>
+        
+        <h4>Lay on Hands</h4>
+        <p>You have a pool of healing power that can restore 5 hit points. As an action, you can touch a creature and draw power from the pool to restore a number of hit points to that creature. Alternatively, you can expend 5 hit points from your pool of healing to cure the target of one disease or neutralize one poison affecting it.</p>
+        <p><strong>Pool:</strong> 5 hit points per long rest</p>
+    </div>
+
+    <hr>
+
+    <h3>PROFICIENCIES</h3>
+    <div class="feature-box">
+        <p><strong>Armor:</strong> All armor, shields</p>
+        <p><strong>Weapons:</strong> Simple weapons, martial weapons</p>
+        <p><strong>Tools:</strong> Smith's Tools</p>
+        <p><strong>Saving Throws:</strong> Wisdom, Charisma</p>
+        <p><strong>Skills:</strong> Athletics, Insight, Intimidation, Religion</p>
+    </div>
+
+    <hr>
+
+    <div class="quote">
+        "Justice is not negotiable. It is not a matter of opinion. I was forged to serve it, and I shall never fail in this duty."
+    </div>
+
+    <hr>
+
+    <h3>BACKGROUND: SOLDIER</h3>
+    <div class="feature-box">
+        <h4>Military Rank</h4>
+        <p>You have a military rank from your career as a soldier. Soldiers loyal to your former military organization still recognize your authority and influence, and they defer to you when appropriate. You can invoke your rank to exert influence over other soldiers and requisition simple equipment or horses for temporary use.</p>
+        
+        <h4>Personality</h4>
+        <p><strong>Trait:</strong> I can stare down the Divine Shadows army without flinching.</p>
+        <p><strong>Ideal:</strong> Responsibility. I do what I must and do everything I can to compelete the mission.</p>
+        <p><strong>Bond:</strong> The mission is worth dying for.</p>
+        <p><strong>Flaw:</strong> The mission is above everything. The lives of my team, my life. It doesn't matter</p>
+    </div>
+
+    <script>
+        // HP input validation
+        document.getElementById('current-hp').addEventListener('change', function() {
+            if (this.value > 13) this.value = 13;
+            if (this.value < 0) this.value = 0;
+        });
+        
+        // Spell slot toggle functionality
+        document.querySelectorAll('.spell-slot').forEach(slot => {
+            slot.addEventListener('click', function() {
+                this.classList.toggle('checked');
+            });
+        });
+    </script>
+</body>
+</html>

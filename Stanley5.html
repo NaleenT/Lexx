@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stanley Tweedle - Level 5 Rogue</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f5f5dc;
+            color: #2c1810;
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #8b0000;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            margin: 5px 0;
+            color: #8b0000;
+            font-size: 2.5em;
+        }
+        
+        .subtitle {
+            font-style: italic;
+            color: #666;
+        }
+        
+        .stat-block {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .stat {
+            text-align: center;
+            padding: 10px;
+            background-color: #fff;
+            border: 2px solid #8b0000;
+            border-radius: 5px;
+        }
+        
+        .stat-name {
+            font-weight: bold;
+            font-size: 0.8em;
+            color: #8b0000;
+        }
+        
+        .stat-value {
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+        
+        .stat-modifier {
+            font-size: 1.2em;
+            color: #666;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .info-box {
+            background-color: #fff;
+            padding: 15px;
+            border: 1px solid #8b0000;
+            border-radius: 5px;
+        }
+        
+        .info-box h3 {
+            margin-top: 0;
+            color: #8b0000;
+            border-bottom: 1px solid #8b0000;
+            padding-bottom: 5px;
+        }
+        
+        .passive-scores {
+            background-color: #fffacd;
+            padding: 10px;
+            border: 2px solid #daa520;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        
+        .passive-scores h4 {
+            margin: 0 0 10px 0;
+            color: #8b0000;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            background-color: #fff;
+        }
+        
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #8b0000;
+        }
+        
+        th {
+            background-color: #8b0000;
+            color: #fff;
+            font-weight: bold;
+        }
+        
+        .feature-box {
+            background-color: #fff;
+            padding: 15px;
+            margin: 15px 0;
+            border: 2px solid #8b0000;
+            border-radius: 5px;
+        }
+        
+        .feature-box h4 {
+            color: #8b0000;
+            margin-top: 15px;
+        }
+        
+        .feature-box h4:first-child {
+            margin-top: 0;
+        }
+        
+        .new-feature {
+            background-color: #fffacd;
+            padding: 10px;
+            border-left: 4px solid #daa520;
+            margin: 10px 0;
+        }
+        
+        ul {
+            margin: 5px 0;
+        }
+        
+        .quote {
+            font-style: italic;
+            text-align: center;
+            color: #8b0000;
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #fff;
+            border-left: 4px solid #8b0000;
+        }
+        
+        hr {
+            border: none;
+            border-top: 2px solid #8b0000;
+            margin: 20px 0;
+        }
+        
+        .hp-input {
+            width: 60px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            border: 2px solid #8b0000;
+            border-radius: 3px;
+            padding: 5px;
+        }
+        
+        .highlight {
+            background-color: #fffacd;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>STANLEY TWEEDLE</h1>
+        <p class="subtitle">Former Functionary | Cowardly Tactician</p>
+        <p><strong>Level 5 Rogue (Mastermind)</strong> | Human (Variant) | Chaotic Neutral</p>
+    </div>
+
+    <div class="stat-block">
+        <div class="stat">
+            <div class="stat-name">STR</div>
+            <div class="stat-value">8</div>
+            <div class="stat-modifier">-1</div>
+        </div>
+        <div class="stat">
+            <div class="stat-name">DEX</div>
+            <div class="stat-value">16</div>
+            <div class="stat-modifier">+3</div>
+        </div>
+        <div class="stat">
+            <div class="stat-name">CON</div>
+            <div class="stat-value">10</div>
+            <div class="stat-modifier">+0</div>
+        </div>
+        <div class="stat">
+            <div class="stat-name">INT</div>
+            <div class="stat-value">12</div>
+            <div class="stat-modifier">+1</div>
+        </div>
+        <div class="stat">
+            <div class="stat-name">WIS</div>
+            <div class="stat-value">14</div>
+            <div class="stat-modifier">+2</div>
+        </div>
+        <div class="stat">
+            <div class="stat-name">CHA</div>
+            <div class="stat-value">16</div>
+            <div class="stat-modifier">+3</div>
+        </div>
+    </div>
+
+    <div class="info-grid">
+        <div class="info-box">
+            <h3>COMBAT STATS</h3>
+            <p><strong>Armor Class:</strong> 14 (Padded Guard Uniform)</p>
+            <p><strong>Initiative:</strong> +3</p>
+            <p><strong>Speed:</strong> 30 ft.</p>
+            <p><strong>Hit Dice:</strong> 5d8</p>
+            <p><strong>Proficiency Bonus:</strong> <span class="highlight">+3</span></p>
+        </div>
+        
+        <div class="info-box">
+            <h3>HIT POINTS</h3>
+            <p><strong>Maximum HP:</strong> 26</p>
+            <p><strong>Current HP:</strong> <input type="number" class="hp-input" id="current-hp" value="26" min="0" max="26"></p>
+            <p><strong>Temporary HP:</strong> 0</p>
+        </div>
+    </div>
+
+    <div class="passive-scores">
+        <h4>PASSIVE SCORES (Enhanced by Observant Feat)</h4>
+        <p><strong>Passive Perception:</strong> <span class="highlight">20</span> (10 + 5 skill + 5 Observant)</p>
+        <p><strong>Passive Investigation:</strong> <span class="highlight">19</span> (10 + 4 skill + 5 Observant)</p>
+        <p><em>Stanley notices everything. His paranoid hypervigilance means little escapes his attention.</em></p>
+    </div>
+
+    <h3>SAVING THROWS</h3>
+    <table>
+        <tr>
+            <th>Ability</th>
+            <th>Modifier</th>
+            <th>Proficient</th>
+        </tr>
+        <tr>
+            <td>Strength</td>
+            <td>-1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Dexterity</td>
+            <td>+6</td>
+            <td>✓</td>
+        </tr>
+        <tr>
+            <td>Constitution</td>
+            <td>+0</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Intelligence</td>
+            <td>+4</td>
+            <td>✓</td>
+        </tr>
+        <tr>
+            <td>Wisdom</td>
+            <td>+2</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Charisma</td>
+            <td>+3</td>
+            <td></td>
+        </tr>
+    </table>
+
+    <h3>SKILLS</h3>
+    <table>
+        <tr>
+            <th>Skill</th>
+            <th>Modifier</th>
+            <th>Proficient</th>
+            <th>Expertise</th>
+        </tr>
+        <tr>
+            <td>Acrobatics (DEX)</td>
+            <td>+3</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Animal Handling (WIS)</td>
+            <td>+2</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Arcana (INT)</td>
+            <td>+7</td>
+            <td></td>
+            <td>✓</td>
+        </tr>
+        <tr>
+            <td>Athletics (STR)</td>
+            <td>-1</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Deception (CHA)</td>
+            <td>+9</td>
+            <td></td>
+            <td>✓</td>
+        </tr>
+        <tr>
+            <td>History (INT)</td>
+            <td>+1</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Insight (WIS)</td>
+            <td>+8</td>
+            <td></td>
+            <td>✓</td>
+        </tr>
+        <tr>
+            <td>Intimidation (CHA)</td>
+            <td>+3</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Investigation (INT)</td>
+            <td>+4</td>
+            <td>✓</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Medicine (WIS)</td>
+            <td>+2</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Nature (INT)</td>
+            <td>+1</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Perception (WIS)</td>
+            <td>+5</td>
+            <td>✓</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Performance (CHA)</td>
+            <td>+3</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Persuasion (CHA)</td>
+            <td>+3</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Religion (INT)</td>
+            <td>+1</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Sleight of Hand (DEX)</td>
+            <td>+6</td>
+            <td>✓</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Stealth (DEX)</td>
+            <td>+6</td>
+            <td>✓</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Survival (WIS)</td>
+            <td>+2</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <h3>WEAPONS & ATTACKS</h3>
+    <table>
+        <tr>
+            <th>Weapon</th>
+            <th>Attack Bonus</th>
+            <th>Damage</th>
+            <th>Properties</th>
+        </tr>
+        <tr>
+            <td>Dagger (Utility Tool)</td>
+            <td>+6</td>
+            <td>1d4+3 Piercing</td>
+            <td>Finesse, Light, Thrown (20/60 ft)</td>
+        </tr>
+    </table>
+
+    <div class="feature-box">
+        <h4>EQUIPMENT</h4>
+        <ul>
+            <li>Padded Armor (Standard Issue Guard Uniform) - AC 14</li>
+            <li>Thieves' Tools (Maintenance Kit)</li>
+            <li>Disguise Kit (Scrounged officer's makeup kit)</li>
+            <li>Forgery Kit (Stolen data-stamps and authorization forms)</li>
+            <li>Gaming Set (Cards for "Bureaucratic Shuffle")</li>
+            <li>Courier's satchel</li>
+            <li>Useless data slate</li>
+            <li>Protein paste</li>
+            <li>Water flask</li>
+            <li>Worthless Cluster Credits</li>
+            <li>Tarnished rank pin</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h3>FEATURES & TRAITS</h3>
+
+    <div class="feature-box">
+        <h4>Racial Traits (Human - Variant)</h4>
+        <p><strong>Ability Score Increase:</strong> +1 Dexterity, +1 Charisma</p>
+        <p><strong>Skills:</strong> Perception (proficiency)</p>
+        <p><strong>Feat:</strong> Skill Expert</p>
+        <ul>
+            <li>+1 Charisma (already applied to ability score)</li>
+            <li>Gain proficiency in Stealth</li>
+            <li>Gain Expertise in Insight (represents your desperate, paranoid need to read every guard's mood and every superior's intention)</li>
+        </ul>
+    </div>
+
+    <div class="feature-box">
+        <h4>Class Features (Rogue - Level 5)</h4>
+        
+        <p><strong>Expertise:</strong> Your proficiency bonus is doubled for Deception and Arcana checks.</p>
+        
+        <p><strong>Sneak Attack (<span class="highlight">3d6</span>):</strong> Once per turn, you can deal an extra 3d6 damage to one creature you hit with an attack if you have advantage on the attack roll. The attack must use a Finesse or a ranged weapon. You don't need advantage on the attack roll if another enemy of the target is within 5 feet of it, that enemy isn't incapacitated, and you don't have disadvantage on the attack roll.</p>
+        
+        <p><strong>Thieves' Cant:</strong> You know the secret slang of disgruntled functionaries, allowing you to pass messages in seemingly mundane bureaucratic complaints. During your rogue training you learned thieves' cant, a secret mix of dialect, jargon, and code that allows you to hide messages in seemingly normal conversation.</p>
+        
+        <p><strong>Cunning Action:</strong> Your quick thinking allows you to take a bonus action on each of your turns in combat. This action can be used only to take the Dash, Disengage, or Hide action. Perfect for getting out of the way.</p>
+        
+        <div class="new-feature">
+            <p><strong>✨ NEW - Uncanny Dodge:</strong> Starting at 5th level, when an attacker that you can see hits you with an attack, you can use your <strong>reaction</strong> to halve the attack's damage against you. <em>This is the core of Stanley's impossible luck, allowing him to survive blows that should have disintegrated him.</em></p>
+        </div>
+    </div>
+
+    <div class="feature-box">
+        <h4>Roguish Archetype: Mastermind</h4>
+        
+        <p><strong>Master of Intrigue:</strong> You gain proficiency with the disguise kit, the forgery kit, and one gaming set of your choice. You also learn two languages of your choice (Trade Cant, Insectoid).</p>
+        
+        <p><strong>Master of Tactics:</strong> You can use the Help action as a bonus action. When you use the Help action to aid an ally in attacking a creature, the target of that attack can be within 30 feet of you, rather than 5 feet of you, if the target can see or hear you. This lets you coordinate your allies from a safe distance—exactly where Stanley prefers to be.</p>
+    </div>
+
+    <div class="feature-box">
+        <h4>Background: Functionary (Custom)</h4>
+        <p><strong>Feature: Bureaucratic Navigation</strong></p>
+        <p>You have an instinctive understanding of bureaucratic systems and hierarchies. You can usually predict how officials will react to requests, identify which forms or procedures are needed, and recognize opportunities to exploit red tape or delay enforcement. When dealing with governmental or organizational systems, you have advantage on checks to navigate regulations, forge documents, or talk your way past minor officials.</p>
+        
+        <p><strong>Skill Proficiencies:</strong> Investigation, Sleight of Hand</p>
+        <p><strong>Tool Proficiencies:</strong> Forgery Kit, one Gaming Set</p>
+        <p><strong>Languages:</strong> Two of your choice (Trade Cant, Insectoid)</p>
+    </div>
+
+    <div class="feature-box">
+        <h4>✨ Level 4 Feat: Observant</h4>
+        <p>Your paranoid hypervigilance gives you an edge. You gain the following benefits:</p>
+        <ul>
+            <li>Increase your <strong>Wisdom</strong> score by 1 (from 13 to 14).</li>
+<li>You can read lips of any creature you can see that speaks a language you know.</li>
+        <li>You gain a <strong>+5 bonus</strong> to your passive Wisdom (Perception) and passive Intelligence (Investigation) scores.</li>
+    </ul>
+</div>
+
+<div class="feature-box">
+    <h4>Rogue Feature: Expertise</h4>
+    <p>Your proficiency bonus is doubled for the following skills:</p>
+    <ul>
+        <li><strong>Deception</strong></li>
+        <li><strong>Arcana</strong></li>
+    </ul>
+</div>
+
+<div class="feature-box">
+    <h4>Rogue Feature: Sneak Attack (3d6)</h4>
+    <p>Once per turn, you can deal an extra <strong>3d6 damage</strong> to one creature you hit with an attack if you have advantage on the attack roll. The attack must use a finesse or a ranged weapon.</p>
+    <p>You don't need advantage on the attack roll if another enemy of the target is within 5 feet of it, that enemy isn't incapacitated, and you don't have disadvantage on the attack roll.</p>
+</div>
+
+<div class="feature-box">
+    <h4>Rogue Feature: Thieves' Cant</h4>
+    <p>You know thieves' cant, a secret mix of dialect, jargon, and code that allows you to hide messages in seemingly normal conversation.</p>
+</div>
+
+<div class="feature-box">
+    <h4>Rogue Feature: Cunning Action</h4>
+    <p>You can take a bonus action on each of your turns in combat to take the <strong>Dash</strong>, <strong>Disengage</strong>, or <strong>Hide</strong> action.</p>
+</div>
+
+<div class="feature-box">
+    <h4>Mastermind Feature: Master of Intrigue</h4>
+    <p>You gain proficiency with the disguise kit, the forgery kit, one gaming set of your choice, and two languages of your choice.</p>
+</div>
+
+<div class="feature-box">
+    <h4>Mastermind Feature: Master of Tactics</h4>
+    <p>You can use the <strong>Help action as a bonus action</strong>. Additionally, when you use the Help action to aid an ally in attacking a creature, the target of that attack can be within <strong>30 feet of you</strong>, rather than within 5 feet of you, if the target can see or hear you.</p>
+    <p><em>This is Stanley's core ability: cowering behind cover while pointing out a weakness, giving an ally advantage on their next attack.</em></p>
+</div>
+
+<div class="feature-box">
+    <h4>Rogue Feature: Uncanny Dodge</h4>
+    <p>When an attacker that you can see hits you with an attack, you can use your <strong>reaction</strong> to halve the attack's damage against you.</p>
+    <p><em>This represents Stanley's impossible luck, allowing him to survive blows that should have disintegrated him.</em></p>
+</div>
+
+<hr>
+
+
+
+<hr>
+
+<h3>PERSONALITY</h3>
+<div class="feature-box">
+    <p><strong>Personality Traits:</strong> Cowardly, self-preserving, surprisingly resourceful when cornered. Constantly complaining but somehow keeps surviving.</p>
+    
+    <p><strong>Ideals:</strong> Survival above all else. The universe is cruel and unfair, so the only thing that matters is staying alive.</p>
+    
+    <p><strong>Bonds:</strong> Despite his cowardice, Stanley forms unexpected attachments to the few people who don't immediately try to kill or exploit him.</p>
+    
+    <p><strong>Flaws:</strong> Extreme cowardice. Will lie, cheat, or hide to avoid danger. Terrible at making decisions under pressure.</p>
+</div>
+
+<hr>
+
+<div class="quote">
+    <p>"I have a very bad feeling about this..."</p>
+</div>
+
+<script>
+    // Save HP to localStorage when changed
+    const hpInput = document.getElementById('current-hp');
+    
+    hpInput.addEventListener('input', function() {
+        localStorage.setItem('stanley_lv5_current_hp', this.value);
+    });
+    
+    notesField.addEventListener('input', function() {
+        localStorage.setItem('stanley_lv5_notes', this.value);
+    });
+    
+    backstoryField.addEventListener('input', function() {
+        localStorage.setItem('stanley_lv5_backstory', this.value);
+    });
+    
+    // Load saved data on page load
+    window.addEventListener('load', function() {
+        const savedHP = localStorage.getItem('stanley_lv5_current_hp');
+        const savedNotes = localStorage.getItem('stanley_lv5_notes');
+        const savedBackstory = localStorage.getItem('stanley_lv5_backstory');
+        
+        if (savedHP !== null) {
+            hpInput.value = savedHP;
+        }
+        if (savedNotes !== null) {
+            notesField.value = savedNotes;
+        }
+        if (savedBackstory !== null) {
+            backstoryField.value = savedBackstory;
+        }
+    });
+</script>
+
+</body>
+</html>
+```

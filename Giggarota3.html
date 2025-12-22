@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giggarota - D&D 5e Character Sheet</title>
+    <style>
+        body {
+            font-family: 'Book Antiqua', 'Palatino Linotype', serif;
+            max-width: 850px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f4e8d8;
+            color: #2c1810;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 5px;
+            color: #8b0000;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        h2 {
+            text-align: center;
+            font-size: 1.2em;
+            font-style: italic;
+            margin-top: 0;
+            color: #5c3317;
+        }
+        h3 {
+            background-color: #8b0000;
+            color: #f4e8d8;
+            padding: 8px;
+            margin-top: 20px;
+            border-radius: 3px;
+            font-size: 1.1em;
+        }
+        h4 {
+            color: #8b0000;
+            margin-top: 15px;
+            margin-bottom: 8px;
+            font-size: 1em;
+        }
+        hr {
+            border: none;
+            border-top: 2px solid #8b0000;
+            margin: 15px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: #fff;
+        }
+        th, td {
+            border: 1px solid #8b0000;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #d4a574;
+            font-weight: bold;
+        }
+        .ability-score {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .modifier {
+            font-size: 1.2em;
+            color: #8b0000;
+        }
+        .combat-stats td {
+            font-weight: bold;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        li {
+            padding: 4px 0;
+        }
+        .proficient {
+            font-weight: bold;
+            color: #8b0000;
+        }
+        .feature-box {
+            background-color: #fff;
+            border: 2px solid #8b0000;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .quote {
+            text-align: center;
+            font-style: italic;
+            font-size: 1.1em;
+            margin: 20px 0;
+            color: #5c3317;
+        }
+        .checkbox {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border: 2px solid #8b0000;
+            margin-right: 5px;
+            vertical-align: middle;
+            cursor: pointer;
+            background-color: #fff;
+            transition: background-color 0.2s;
+        }
+        .checkbox:hover {
+            background-color: #f4e8d8;
+        }
+        .checkbox.checked {
+            background-color: #8b0000;
+        }
+        .checkbox.locked {
+            cursor: default;
+            opacity: 0.7;
+        }
+        .death-saves {
+            background-color: #fff;
+            border: 2px solid #8b0000;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .death-saves-row {
+            display: flex;
+            justify-content: space-around;
+            margin: 10px 0;
+        }
+        .death-saves-section {
+            text-align: center;
+        }
+        .death-saves-section strong {
+            display: block;
+            margin-bottom: 8px;
+            color: #8b0000;
+        }
+        .password-section {
+            background-color: #fff;
+            border: 2px solid #8b0000;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .password-section h4 {
+            margin-top: 0;
+            color: #8b0000;
+        }
+        .password-input {
+            padding: 8px 12px;
+            border: 2px solid #8b0000;
+            border-radius: 3px;
+            font-size: 1em;
+            margin-right: 10px;
+            width: 200px;
+        }
+        .password-button {
+            padding: 8px 20px;
+            background-color: #8b0000;
+            color: #f4e8d8;
+            border: none;
+            border-radius: 3px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .password-button:hover {
+            background-color: #a52a2a;
+        }
+        .reset-button {
+            padding: 8px 20px;
+            background-color: #5c3317;
+            color: #f4e8d8;
+            border: none;
+            border-radius: 3px;
+            font-size: 0.9em;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.2s;
+        }
+        .reset-button:hover {
+            background-color: #7d4a25;
+        }
+        .error-message {
+            color: #8b0000;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .beast-attack {
+            background-color: #ffe6e6;
+        }
+    </style>
+</head>
+<body>
+    <h1>Giggarota</h1>
+    <h2>The Cannibal of Cluster</h2>
+    
+    <hr>
+    
+    <h3>CHARACTER INFORMATION</h3>
+    <table>
+        <tr>
+            <th>Class & Level</th>
+            <th>Background</th>
+            <th>Player Name</th>
+            <th>Race</th>
+            <th>Alignment</th>
+            <th>Experience Points</th>
+        </tr>
+        <tr>
+            <td>Barbarian 3 (Path of the Beast)</td>
+            <td>Criminal</td>
+            <td>You got a nice butt</td>
+            <td>Orc</td>
+            <td>Chaotic Evil</td>
+            <td>900</td>
+        </tr>
+    </table>
+    
+    <hr>
+    
+    <h3>ABILITY SCORES & MODIFIERS</h3>
+    <table>
+        <tr>
+            <th>STRENGTH</th>
+            <th>DEXTERITY</th>
+            <th>CONSTITUTION</th>
+            <th>INTELLIGENCE</th>
+            <th>WISDOM</th>
+            <th>CHARISMA</th>
+        </tr>
+        <tr>
+            <td class="ability-score">17</td>
+            <td class="ability-score">13</td>
+            <td class="ability-score">15</td>
+            <td class="ability-score">8</td>
+            <td class="ability-score">12</td>
+            <td class="ability-score">10</td>
+        </tr>
+        <tr>
+            <td class="modifier">+3</td>
+            <td class="modifier">+1</td>
+            <td class="modifier">+2</td>
+            <td class="modifier">-1</td>
+            <td class="modifier">+1</td>
+            <td class="modifier">+0</td>
+        </tr>
+    </table>
+    
+    <hr>
+    
+    <h3>PROFICIENCY & INSPIRATION</h3>
+    <table>
+        <tr>
+            <th>Proficiency Bonus</th>
+            <th>Inspiration</th>
+        </tr>
+        <tr>
+            <td>+2</td>
+            <td><span class="checkbox" onclick="toggleCheckbox(this)"></span></td>
+        </tr>
+    </table>
+    
+    <hr>
+    
+    <h3>SAVING THROWS</h3>
+    <ul>
+        <li><span class="checkbox checked locked"></span> <span class="proficient">Strength +5</span></li>
+        <li><span class="checkbox locked"></span> Dexterity +1</li>
+        <li><span class="checkbox checked locked"></span> <span class="proficient">Constitution +4</span></li>
+        <li><span class="checkbox locked"></span> Intelligence -1</li>
+        <li><span class="checkbox locked"></span> Wisdom +1</li>
+        <li><span class="checkbox locked"></span> Charisma +0</li>
+    </ul>
+    
+    <hr>
+    
+    <h3>SKILLS</h3>
+    <ul>
+        <li><span class="checkbox locked"></span> Acrobatics (Dex) +1</li>
+        <li><span class="checkbox locked"></span> Animal Handling (Wis) +1</li>
+        <li><span class="checkbox locked"></span> Arcana (Int) -1</li>
+        <li><span class="checkbox checked locked"></span> <span class="proficient">Athletics (Str) +5</span></li>
+        <li><span class="checkbox checked locked"></span> <span class="proficient">Deception (Cha) +2</span></li>
+        <li><span class="checkbox locked"></span> History (Int) -1</li>
+        <li><span class="checkbox locked"></span> Insight (Wis) +1</li>
+        <li><span class="checkbox checked locked"></span> <span class="proficient">Intimidation (Cha) +2</span></li>
+        <li><span class="checkbox locked"></span> Investigation (Int) -1</li>
+        <li><span class="checkbox locked"></span> Medicine (Wis) +1</li>
+        <li><span class="checkbox locked"></span> Nature (Int) -1</li>
+        <li><span class="checkbox locked"></span> Perception (Wis) +1</li>
+        <li><span class="checkbox locked"></span> Performance (Cha) +0</li>
+        <li><span class="checkbox locked"></span> Persuasion (Cha) +0</li>
+        <li><span class="checkbox locked"></span> Religion (Int) -1</li>
+        <li><span class="checkbox locked"></span> Sleight of Hand (Dex) +1</li>
+        <li><span class="checkbox checked locked"></span> <span class="proficient">Stealth (Dex) +3</span></li>
+        <li><span class="checkbox locked"></span> Survival (Wis) +1</li>
+    </ul>
+    
+    <hr>
+    
+    <h3>COMBAT STATS</h3>
+    <table class="combat-stats">
+        <tr>
+            <th>Armor Class</th>
+            <th>Initiative</th>
+            <th>Speed</th>
+            <th>Hit Point Maximum</th>
+            <th>Current Hit Points</th>
+        </tr>
+        <tr>
+            <td>13</td>
+            <td>+1</td>
+            <td>30 ft.</td>
+            <td>32</td>
+            <td>32</td>
+        </tr>
+    </table>
+    
+    <p><strong>Hit Dice:</strong> 
+        <span class="checkbox" onclick="toggleCheckbox(this)"></span> 
+        <span class="checkbox" onclick="toggleCheckbox(this)"></span> 
+        <span class="checkbox" onclick="toggleCheckbox(this)"></span> 
+        3d12
+    </p>
+    
+    <div class="death-saves">
+        <div class="death-saves-row">
+            <div class="death-saves-section">
+                <strong>SUCCESSES</strong>
+                <span class="checkbox" onclick="toggleCheckbox(this)"></span>
+                <span class="checkbox" onclick="toggleCheckbox(this)"></span>
+                <span class="checkbox" onclick="toggleCheckbox(this)"></span>
+            </div>
+            <div class="death-saves-section">
+                <strong>FAILURES</strong>
+                <span class="checkbox" onclick="toggleCheckbox(this)"></span>
+                <span class="checkbox" onclick="toggleCheckbox(this)"></span>
+                <span class="checkbox" onclick="toggleCheckbox(this)"></span>
+            </div>
+        </div>
+    </div>
+    
+    <hr>
+    
+    <h3>ATTACKS & SPELLCASTING</h3>
+    <table>
+        <tr>
+            <th>Weapon</th>
+            <th>Attack Bonus</th>
+            <th>Damage/Type</th>
+            <th>Range</th>
+        </tr>
+        <tr>
+            <td>Greataxe (Meat Cleaver)</td>
+            <td>+5</td>
+            <td>1d12+5 slashing (with Rage)</td>
+            <td>5 ft.</td>
+        </tr>
+        <tr>
+            <td>Handaxe</td>
+            <td>+5</td>
+            <td>1d6+5 slashing (with Rage)</td>
+            <td>5 ft. / 20/60 ft.</td>
+        </tr>
+        <tr class="beast-attack">
+            <td><strong>Form of the Beast: BITE</strong><br><em>(Only while Raging)</em></td>
+            <td>+5</td>
+            <td>1d8+5 piercing (with Rage)</td>
+            <td>5 ft.</td>
+        </tr>
+    </table>
+    
+    <div class="feature-box">
+        <h4>⚠️ Beast Bite Special Ability</h4>
+        <p><strong>Life Drain:</strong> Once per turn when you damage a creature with your bite attack, you regain <strong>2 hit points</strong> (equal to your proficiency bonus), provided you have less than half your hit points remaining (below 16 HP).</p>
+        <p><em>Your jaw unhinges and your teeth elongate into vicious fangs. You literally feast on the life force of your enemies to mend your wounds.</em></p>
+    </div>
+    
+    <hr>
+    
+    <h3>EQUIPMENT & TREASURE</h3>
+    <p><strong>Weapons:</strong> Greataxe (huge meat cleaver), Handaxe (×2)</p>
+    <p><strong>Armor:</strong> None (prison rags)</p>
+    <p><strong>Gear:</strong> Crowbar, dark common clothes with hood (prison uniform), pouch containing polished finger bones (worship tokens)</p>
+    <p><strong>Currency:</strong> 15 gp</p>
+    
+    <hr>
+    
+    <h3>FEATURES & TRAITS</h3>
+    
+    <div class="feature-box">
+        <h4>Racial Traits (Orc)</h4>
+        <p><strong>Darkvision (60 ft.):</strong> See in dim light as if bright, darkness as if dim light.</p>
+        <p><strong>Aggressive:</strong> Bonus action to move up to your speed toward a hostile creature you can see.</p>
+        <p><strong>Powerful Build:</strong> Count as one size larger for carrying capacity and weight you can push, drag, or lift.</p>
+    </div>
+    
+    <div class="feature-box">
+        <h4>Class Features (Barbarian Level 3)</h4>
+        <p><strong>Rage - "Feeding Frenzy" (3/Long Rest):</strong> Bonus action to rage for 1 minute. Gain advantage on Strength checks and saves, +2 melee damage with Strength weapons, resistance to bludgeoning/piercing/slashing damage.</p>
+        <p><strong>Rage Tracker:</strong> 
+            <span class="checkbox" onclick="toggleCheckbox(this)"></span>
+            <span class="checkbox" onclick="toggleCheckbox(this)"></span>
+            <span class="checkbox" onclick="toggleCheckbox(this)"></span>
+        </p>
+        <p><strong>Unarmored Defense:</strong> AC = 10 + DEX modifier + CON modifier (when not wearing armor).</p>
+        <p><strong>Reckless Attack:</strong> You can give yourself advantage on melee weapon attack rolls using Strength during your turn, but attack rolls against you have advantage until your next turn.</p>
+        <p><strong>Danger Sense:</strong> You have advantage on Dexterity saving throws against effects you can see, such as traps and spells (as long as you aren't blinded, deafened, or incapacitated).</p>
+    </div>
+    
+    <div class="feature-box">
+        <h4>Primal Path: Path of the Beast</h4>
+        <p><strong>Form of the Beast:</strong> When you enter your rage, you can manifest a natural weapon—a monstrous <strong>Bite</strong>.</p>
+        <p><em>Flavor: Your body has been "reformatted" for consumption. Your jaw unhinges and your teeth elongate into vicious fangs. This bite is a simple melee weapon that uses Strength. By consuming the flesh of your enemies in this way, you literally feast on their life force to mend your own wounds.</em></p>
+    </div>
+    
+    <div class="feature-box">
+        <h4>Background Feature (Criminal)</h4>
+        <p><strong>Criminal Contact:</strong> You have a reliable contact in the criminal underworld. On Cluster, this could be a corrupt guard or powerful inmate who runs the black market.</p>
+    </div>
+    
+    <hr>
+    
+    <h3>PERSONALITY & BACKGROUND</h3>
+    <p><strong>Backstory:</strong> Convicted of heresy, murder, and cannibalism—all in devotion to His Divine Shadow. Sentenced to organ harvesting on Cluster, she awaits her fate with barely contained hunger and rage.</p>
+    <p><strong>Personality Note:</strong> Her rage is a "Feeding Frenzy"—a state of ecstatic, carnivorous violence where pain fades and only the tearing of flesh matters. At level 3, her body has been further "reformatted" by His Divine Shadow's dark blessing, allowing her to manifest horrific physical transformations when she enters her bloodlust.</p>
+    
+    <hr>
+    
+    <p class="quote">"I hunger... and His Shadow hungers through me."</p>
+    
+    <hr>
+    
+    <div class="password-section">
+        <h4>Password</h4>
+        <p>Enter password</p>
+        <input type="password" id="passwordInput" class="password-input" placeholder="Enter password">
+        <button class="password-button" onclick="checkPassword()">Check code</button>
+        <br>
+        <button class="reset-button" onclick="resetCheckboxes()">Reset All Checkboxes</button>
+        <div id="errorMessage" class="error-message"></div>
+    </div>
+    
+    <script>
+        function toggleCheckbox(element) {
+            // Don't toggle if it's locked (proficiencies/skills)
+            if (element.classList.contains('locked')) {
+                return;
+            }
+            
+            // Toggle the checked class
+            element.classList.toggle('checked');
+        }
+        
+        function resetCheckboxes() {
+            // Get all checkboxes that aren't locked
+            const checkboxes = document.querySelectorAll('.checkbox:not(.locked)');
+            
+            // Remove 'checked' class from all unlocked checkboxes
+            checkboxes.forEach(checkbox => {
+                checkbox.classList.remove('checked');
+            });
+        }
+        
+        function checkPassword() {
+            const password = document.getElementById('passwordInput').value;
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Define your passwords and corresponding character sheet URLs
+            const characters = {
+                'stanley': 'stanley.html',
+                'xev': 'xev.html',
+                'kai': 'kai.html'
+                // Add more characters as needed
+            };
+            
+            if (characters[password.toLowerCase()]) {
+                // Redirect to the corresponding character sheet
+                window.location.href = characters[password.toLowerCase()];
+            } else {
+                // Show error message
+                errorMessage.textContent = 'Invalid password. Access denied.';
+                document.getElementById('passwordInput').value = '';
+                
+                // Clear error message after 3 seconds
+                setTimeout(() => {
+                    errorMessage.textContent = '';
+                }, 3000);
+            }
+        }
+        
+        // Allow pressing Enter in the password field
+        document.getElementById('passwordInput').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                checkPassword();
+            }
+        });
+    </script>
+    
+</body>
+</html>

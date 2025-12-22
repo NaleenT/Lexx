@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kai - Level 5 Paladin</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f6f0 0%, #e8e4d8 100%);
+            color: #2c2416;
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #b8860b;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffd700 0%, #daa520 100%);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(184, 134, 11, 0.3);
+        }
+        
+        h1 {
+            margin: 5px 0;
+            color: #ffffff;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-style: italic;
+            color: #2c2416;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+        }
+        
+        .stat-block {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .stat {
+            text-align: center;
+            padding: 10px;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+            border: 2px solid #b8860b;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(184, 134, 11, 0.2);
+        }
+        
+        .stat-name {
+            font-weight: bold;
+            font-size: 0.8em;
+            color: #b8860b;
+        }
+        
+        .stat-value {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #2c2416;
+        }
+        
+        .stat-modifier {
+            font-size: 1.2em;
+            color: #666;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .info-box {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f6f0 100%);
+            padding: 15px;
+            border: 2px solid #b8860b;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(184, 134, 11, 0.2);
+        }
+        
+        .info-box h3 {
+            margin-top: 0;
+            color: #b8860b;
+            border-bottom: 2px solid #daa520;
+            padding-bottom: 5px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(184, 134, 11, 0.15);
+        }
+        
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #daa520;
+        }
+        
+        th {
+            background: linear-gradient(135deg, #b8860b 0%, #daa520 100%);
+            color: #fff;
+            font-weight: bold;
+        }
+        
+        .feature-box {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f6f0 100%);
+            padding: 15px;
+            margin: 15px 0;
+            border: 2px solid #b8860b;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(184, 134, 11, 0.2);
+        }
+        
+        .feature-box h4 {
+            color: #b8860b;
+            margin-top: 15px;
+        }
+        
+        .feature-box h4:first-child {
+            margin-top: 0;
+        }
+        
+        ul {
+            margin: 5px 0;
+        }
+        
+        .spell-slot {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #b8860b;
+            margin: 2px;
+            cursor: pointer;
+            background-color: #fff;
+            border-radius: 3px;
+        }
+        
+        .spell-slot.checked {
+            background: linear-gradient(135deg, #ffd700 0%, #daa520 100%);
+        }
+        
+        .quote {
+            font-style: italic;
+            text-align: center;
+            color: #2c2416;
+            margin: 20px 0;
+            padding: 15px;
+            background: linear-gradient(135deg, #ffd700 0%, #f0e68c 100%);
+            border-left: 4px solid #b8860b;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(184, 134, 11, 0.3);
+        }
+        
+        hr {
+            border: none;
+            border-top: 2px solid #daa520;
+            margin: 20px 0;
+        }
+        
+        .hp-input {
+            width: 60px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            border: 2px solid #b8860b;
+            border-radius: 3px;
+            padding: 5px;
+            background-color: #fff;
+        }
+        
+        .temp-hp-input {
+            width: 60px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            border: 2px solid #4a90e2;
+            border-radius: 3px;
+            padding: 5px;
+            background-color: #fff;
+        }
+        
+        .hp-input:focus, .temp-hp-input:focus {
+            outline: none;
+            border-color: #ffd700;
+            box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+        }
+        
+        .oath-spell {
+            background-color: #fff8dc;
+            font-weight: bold;
+        }
+        
+        .checkbox-tracker {
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            border: 3px solid #b8860b;
+            margin: 3px;
+            cursor: pointer;
+            background-color: #fff;
+            border-radius: 4px;
+            text-align: center;
+            line-height: 25px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .hp-bar-container {
+            margin: 15px 0;
+            padding: 10px;
+            border: 2px solid #b8860b;
+            border-radius: 5px;
+            background-color: #fff5f5;
+        }
+    </style>
+    <script>
+        function saveHP() {
+            localStorage.setItem('kai-current-hp', document.getElementById('current-hp').value);
+            localStorage.setItem('kai-temp-hp', document.getElementById('temp-hp').value);
+        }
+        
+        function loadHP() {
+            const currentHP = localStorage.getItem('kai-current-hp');
+            const tempHP = localStorage.getItem('kai-temp-hp');
+            if (currentHP) document.getElementById('current-hp').value = currentHP;
+            if (tempHP) document.getElementById('temp-hp').value = tempHP;
+        }
+        
+        window.onload = loadHP;
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h1>KAI</h1>
+        <p class="subtitle">Bearer of Thodin's Legacy | Assassin Who Became the Revolution</p>
+        <p style="color: #2c2416; font-weight: bold;"><strong>Level 5 Oath of Vengeance Paladin</strong> | Warforged | Chaotic Good</p>
+    </div>
+
+    <div class="stat-block">
+        <div class="stat">
+            <div class="stat-name">STR</div>
+            <div class="stat-value">16</div>
+            <div class="stat-modifier">+3</div>
+        </div>
+        <div class="stat">
+            <div class="stat-name">DEX</div>
+            <div class="stat-value">10</div>
+            <div class="stat-modifier">+0</div>
+        </div>
+        <div class="stat">
+            <div class="stat-name">CON</div>
+            <div class="stat-value">14</div>
+            <div class="stat-modifier">+2</div>
+        </div>
+        <div class="stat">
+            <div class="stat-name">INT</div>
+            <div class="stat-value">8</div>
+            <div class="stat-modifier">-1</div>
+        </div>
+        <div class="stat">
+            <div class="stat-name">WIS</div>
+            <div class="stat-value">12</div>
+            <div class="stat-modifier">+1</div>
+        </div>
+        <div class="stat">
+            <div class="stat-name">CHA</div>
+            <div class="stat-value">14</div>
+            <div class="stat-modifier">+2</div>
+        </div>
+    </div>
+
+    <div class="info-grid">
+        <div class="info-box">
+            <h3>COMBAT STATS</h3>
+            <p><strong>Armor Class:</strong> 19 (Chain Mail + Shield + Integrated Protection)</p>
+            <p><strong>Initiative:</strong> +0</p>
+            <p><strong>Speed:</strong> 30 ft.</p>
+            <p><strong>Hit Dice:</strong> 5d10</p>
+            <p><strong>Proficiency Bonus:</strong> +3</p>
+        </div>
+        
+        <div class="info-box">
+            <h3>HIT POINTS</h3>
+            <div class="hp-bar-container">
+                <p><strong>Maximum HP:</strong> 46</p>
+                <p><strong>Current HP:</strong> <input type="number" class="hp-input" id="current-hp" value="46" min="0" max="46" onchange="saveHP()"></p>
+                <p><strong>Temporary HP:</strong> <input type="number" class="temp-hp-input" id="temp-hp" value="0" min="0" onchange="saveHP()"></p>
+            </div>
+        </div>
+    </div>
+
+    <h3>SAVING THROWS</h3>
+    <table>
+        <tr>
+            <th>Ability</th>
+            <th>Modifier</th>
+            <th>Proficient</th>
+        </tr>
+        <tr>
+            <td>Strength</td>
+            <td>+3</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Dexterity</td>
+            <td>+0</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Constitution</td>
+            <td>+2</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Intelligence</td>
+            <td>-1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Wisdom</td>
+            <td>+4</td>
+            <td>✓</td>
+        </tr>
+        <tr>
+            <td>Charisma</td>
+            <td>+5</td>
+            <td>✓</td>
+        </tr>
+    </table>
+
+    <h3>SKILLS</h3>
+    <table>
+        <tr>
+            <th>Skill</th>
+            <th>Modifier</th>
+            <th>Proficient</th>
+        </tr>
+        <tr>
+            <td>Acrobatics (DEX)</td>
+            <td>+0</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Animal Handling (WIS)</td>
+            <td>+4</td>
+            <td>✓</td>
+        </tr>
+        <tr>
+            <td>Arcana (INT)</td>
+            <td>-1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Athletics (STR)</td>
+            <td>+6</td>
+            <td>✓</td>
+        </tr>
+        <tr>
+            <td>Deception (CHA)</td>
+            <td>+2</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>History (INT)</td>
+            <td>-1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Insight (WIS)</td>
+            <td>+4</td>
+            <td>✓</td>
+        </tr>
+        <tr>
+            <td>Intimidation (CHA)</td>
+            <td>+5</td>
+            <td>✓</td>
+        </tr>
+        <tr>
+            <td>Investigation (INT)</td>
+            <td>-1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Medicine (WIS)</td>
+            <td>+1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Nature (INT)</td>
+            <td>-1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Perception (WIS)</td>
+            <td>+1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Performance (CHA)</td>
+            <td>+2</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Persuasion (CHA)</td>
+            <td>+5</td>
+            <td>✓</td>
+        </tr>
+        <tr>
+            <td>Religion (INT)</td>
+            <td>+2</td>
+            <td>✓</td>
+        </tr>
+        <tr>
+            <td>Sleight of Hand (DEX)</td>
+            <td>+0</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Stealth (DEX)</td>
+            <td>+0</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Survival (WIS)</td>
+            <td>+4</td>
+            <td>✓</td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <h3>ATTACKS & EQUIPMENT</h3>
+    <table>
+        <tr>
+            <th>Weapon</th>
+            <th>Attack Bonus</th>
+            <th>Damage</th>
+            <th>Damage (Dueling)</th>
+        </tr>
+        <tr>
+            <td>Longsword (One-Handed)</td>
+            <td>+6</td>
+            <td>1d8+3 slashing</td>
+            <td>1d8+5 slashing</td>
+        </tr>
+        <tr>
+            <td>Longsword (Two-Handed)</td>
+            <td>+6</td>
+            <td>1d10+3 slashing</td>
+            <td>—</td>
+        </tr>
+        <tr>
+            <td>Javelin</td>
+            <td>+6</td>
+            <td>1d6+3 piercing (range 30/120)</td>
+            <td>—</td>
+        </tr>
+    </table>
+
+    <div class="feature-box">
+        <h4>⚔️ EXTRA ATTACK (Level 5)</h4>
+        <p>Beginning at 5th level, you can attack <strong>twice</strong>, instead of once, whenever you take the Attack action on your turn.</p>
+    </div>
+
+    <div class="feature-box">
+        <h4>✨ DIVINE SMITE</h4>
+        <p>When you hit a creature with a melee weapon attack, you can expend one spell slot to deal radiant damage to the target, in addition to the weapon's damage:</p>
+        <ul>
+            <li><strong>1st-level slot:</strong> +2d8 radiant damage (+3d8 vs. undead/fiends)</li>
+            <li><strong>2nd-level slot:</strong> +3d8 radiant damage (+4d8 vs. undead/fiends)</li>
+        </ul>
+    </div>
+
+    <div class="feature-box">
+        <h4>Equipment</h4>
+        <ul>
+            <li>Chain Mail (AC 16)</li>
+            <li>Shield (+2 AC)</li>
+            <li>Longsword</li>
+            <li>5 Javelins</li>
+            <li>Explorer's Pack</li>
+            <li>Insignia of rank</li>
+            <li>Common clothes</li>
+            <li>Holy Symbol (engraved on chassis)</li>
+            <li>Bug Bomb (single-use, creates 20-foot-radius Fog Cloud)</li>
+        </ul>
+        <p><strong>Currency:</strong> As needed</p>
+    </div>
+
+    <hr>
+
+    <h3>CLASS FEATURES</h3>
+
+    <div class="feature-box">
+        <h4>🔮 DIVINE SENSE</h4>
+        <p><strong>Uses per Long Rest:</strong> 4 (1 + CHA modifier)</p>
+        <div>
+            <span class="checkbox-tracker" onclick="this.innerHTML = this.innerHTML === '✓' ? '' : '✓';">✓</span>
+            <span class="checkbox-tracker" onclick="this.innerHTML = this.innerHTML === '✓' ? '' : '✓';">✓</span>
+            <span class="checkbox-tracker" onclick="this.innerHTML = this.innerHTML === '✓' ? '' : '✓';">✓</span>
+            <span class="checkbox-tracker" onclick="this.innerHTML = this.innerHTML === '✓' ? '' : '✓';">✓</span>
+        </div>
+        <p><em>Action:</em> Detect celestials, fiends, or undead within 60 feet that are not behind total cover. Also detect consecrated or desecrated places/objects.</p>
+    </div>
+
+    <div class="feature-box">
+        <h4>✋ LAY ON HANDS</h4>
+        <p><strong>Healing Pool:</strong> 25 HP per Long Rest (Paladin level × 5)</p>
+        <p><em>Action:</em> Touch a creature to restore hit points from your pool, or expend 5 hit points to cure one disease or neutralize one poison affecting the creature.</p>
+    </div>
+
+    <div class="feature-box">
+        <h4>⚔️ FIGHTING STYLE: DUELING</h4>
+        <p>When you are wielding a melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon.</p>
+    </div>
+
+    <div class="feature-box">
+        <h4>🛡️ DIVINE HEALTH</h4>
+        <p>You are immune to disease.</p>
+    </div>
+
+    <div class="feature-box">
+        <h4>⚡ CHANNEL DIVINITY</h4>
+        <p><strong>Uses:</strong> 1 per Short or Long Rest</p>
+        <div>
+            <span class="checkbox-tracker" onclick="this.innerHTML = this.innerHTML === '✓' ? '' : '✓';">✓</span>
+        </div>
+        
+        <h4 style="margin-top: 15px;">Abjure Enemy (Action)</h4>
+        <p>Choose one creature within 60 feet that you can see. The target must make a Wisdom saving throw (DC 13) or be frightened for 1 minute or until it takes damage. While frightened, the creature's speed is 0. Fiends and undead have disadvantage on this save.</p>
+        
+        <h4>Vow of Enmity (Bonus Action)</h4>
+        <p>You utter a vow of enmity against a creature you can see within 10 feet. You gain advantage on attack rolls against the creature for 1 minute or until it drops to 0 hit points or falls unconscious.</p>
+    </div>
+
+    <hr>
+
+    <h3>SPELLCASTING</h3>
+
+    <div class="feature-box">
+        <p><strong>Spellcasting Ability:</strong> Charisma</p>
+        <p><strong>Spell Save DC:</strong> 13 (8 + 3 Prof + 2 CHA)</p>
+        <p><strong>Spell Attack Bonus:</strong> +5 (3 Prof + 2 CHA)</p>
+        <p><strong>Spells Prepared:</strong> 5 (CHA modifier + half paladin level)</p>
+    </div>
+
+    <h4>SPELL SLOTS</h4>
+    <p><strong>1st Level (4 slots):</strong></p>
+    <div>
+        <span class="spell-slot" onclick="this.classList.toggle('checked')"></span>
+        <span class="spell-slot" onclick="this.classList.toggle('checked')"></span>
+        <span class="spell-slot" onclick="this.classList.toggle('checked')"></span>
+        <span class="spell-slot" onclick="this.classList.toggle('checked')"></span>
+    </div>
+
+    <p><strong>2nd Level (2 slots):</strong></p>
+    <div>
+        <span class="spell-slot" onclick="this.classList.toggle('checked')"></span>
+        <span class="spell-slot" onclick="this.classList.toggle('checked')"></span>
+    </div>
+
+    <h4 style="margin-top: 20px;">PREPARED SPELLS</h4>
+    <table>
+        <tr>
+            <th>Level</th>
+            <th>Spell</th>
+            <th>Description</th>
+        </tr>
+        <tr class="oath-spell">
+            <td>1st</td>
+            <td>Bane (Oath)</td>
+            <td>Up to 3 creatures make CHA save or subtract 1d4 from attacks/saves for 1 min (conc)</td>
+        </tr>
+        <tr class="oath-spell">
+            <td>1st</td>
+            <td>Hunter's Mark (Oath)</td>
+            <td>Mark creature, deal extra 1d6 damage, advantage on Perception/Survival to find it (1 hr, conc)</td>
+        </tr>
+        <tr>
+            <td>1st</td>
+            <td>Command</td>
+            <td>One-word command, target follows on next turn (WIS save)</td>
+        </tr>
+        <tr>
+            <td>1st</td>
+            <td>Compelled Duel</td>
+            <td>Force creature into duel, disadvantage vs others (WIS save, 1 min conc)</td>
+        </tr>
+        <tr>
+            <td>1st</td>
+            <td>Shield of Faith</td>
+            <td>+2 AC to one creature (10 min, conc)</td>
+        </tr>
+        <tr class="oath-spell">
+            <td>2nd</td>
+            <td>Hold Person (Oath)</td>
+            <td>Paralyze humanoid (WIS save, 1 min conc)</td>
+        </tr>
+        <tr class="oath-spell">
+            <td>2nd</td>
+            <td>Misty Step (Oath)</t>
+            <td>Bonus action teleport up to 30 feet to an unoccupied space you can see</td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <h3>RACIAL TRAITS (WARFORGED)</h3>
+
+    <div class="feature-box">
+        <h4>🔧 CONSTRUCTED RESILIENCE</h4>
+        <ul>
+            <li>Advantage on saving throws against being poisoned</li>
+            <li>Resistance to poison damage</li>
+            <li>Immune to disease</li>
+            <li>Don't need to eat, drink, or breathe</li>
+            <li>Don't need to sleep; magic can't put you to sleep</li>
+        </ul>
+    </div>
+
+    <div class="feature-box">
+        <h4>💤 SENTRY'S REST</h4>
+        <p>During a long rest, spend at least 6 hours in an inactive, motionless state. You remain conscious and aware of your surroundings during this time.</p>
+    </div>
+
+    <div class="feature-box">
+        <h4>🛡️ INTEGRATED PROTECTION</h4>
+        <p>+1 bonus to AC regardless of armor worn (already included in AC calculation).</p>
+    </div>
+
+    <hr>
+
+    <h3>BACKGROUND: FOLK HERO</h3>
+
+    <div class="feature-box">
+        <h4>🏠 RUSTIC HOSPITALITY</h4>
+        <p>Common folk will provide shelter, food, and assistance. They will shield you from authorities unless it risks their lives.</p>
+    </div>
+
+    <hr>
+
+    <h3>EQUIPMENT & GEAR</h3>
+
+    <div class="feature-box">
+        <ul>
+            <li><strong>Longsword</strong> (Thodin's blade, now Kai's)</li>
+            <li><strong>Javelins</strong> (×5)</li>
+            <li><strong>Chain Mail</strong> (AC 16)</li>
+            <li><strong>Shield</strong> (+2 AC)</li>
+            <li><strong>Explorer's Pack</strong></li>
+            <li><strong>Holy Symbol</strong> (engraved on chassis - Kai now bears Thodin's symbol)</li>
+            <li><strong>Rebel Insignia</strong> (scarred Brunnen-G symbol)</li>
+            <li><strong>"Bug Bomb"</strong> (single-use, creates 20-foot-radius Fog Cloud)</li>
+            <li><strong>Common clothes</strong></li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h3>CHARACTER NOTES</h3>
+
+    <div class="feature-box">
+        <h4>⚔️ THE TRANSFORMATION: THODIN TO Kai</h4>
+        <p>Kai was originally an assassin or agent who killed Thodin. However, through some method (possibly technological or mystical), Kai absorbed all of Thodin's memories, experiences, and perhaps even aspects of his soul or programming. This has created a complex individual who carries the revolutionary legacy of Thodin while maintaining Kai's own identity and capabilities.</p>
+
+        <h4>👤 PERSONALITY</h4>
+        <p>Kai now carries the weight of two lives—the assassin she was and the revolutionary champion Thodin became. She speaks with Thodin's conviction about freedom and justice, having literally internalized his passion and memories. However, her methods may be more ruthlessly efficient, combining Thodin's idealism with her own lethal pragmatism.</p>
+
+        <h4>⚖️ OATH OF VENGEANCE TENETS</h4>
+        <p>Kai upholds Thodin's adapted tenets:</p>
+        <ul>
+            <li><strong>Fight the Greater Evil:</strong> The Divine Order and His Shadow remain the ultimate threat.</li>
+            <li><strong>No Mercy for the Wicked:</strong> Architects and enforcers of oppression deserve no compassion.</li>
+            <li><strong>By Any Means Necessary:</strong> No qualm can prevent the extermination of tyranny. Any weapon, tactic, or strategy is justified.</li>
+            <li><strong>Restitution:</strong> Must help those harmed and restore freedom to all oppressed beings.</li>
+        </ul>
+
+        <h4>🎭 ALIGNMENT</h4>
+        <p><strong>Chaotic Good</strong> - Though her methods are dark, Kai now fights for the same cause Thodin died for.</p>
+    </div>
+
+    <div class="quote">
+        <p>"Kai carries forward The Divine Shadow's will. He's the assassin and enforcer Cluster's law."</p>
+    </div>
+
+    <script>
+        // Load saved HP values on page load
+        window.onload = function() {
+            const savedCurrentHP = localStorage.getItem('Kai_currentHP');
+            const savedTempHP = localStorage.getItem('Kai_tempHP');
+            
+            if (savedCurrentHP !== null) {
+                document.getElementById('current-hp').value = savedCurrentHP;
+            }
+            if (savedTempHP !== null) {
+                document.getElementById('temp-hp').value = savedTempHP;
+            }
+        }
+
+        // Save HP values to local storage
+        function saveHP() {
+            const currentHP = document.getElementById('current-hp').value;
+            const tempHP = document.getElementById('temp-hp').value;
+            
+            localStorage.setItem('Kai_currentHP', currentHP);
+            localStorage.setItem('Kai_tempHP', tempHP);
+        }
+    </script>
+
+</body>
+</html>
+

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giggarota - Level 1 Barbarian</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f5f5dc;
+            color: #2c1810;
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #8b0000;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            margin: 5px 0;
+            color: #8b0000;
+            font-size: 2.5em;
+        }
+        
+        .subtitle {
+            font-style: italic;
+            color: #666;
+        }
+        
+        .stat-block {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .stat {
+            text-align: center;
+            padding: 10px;
+            background-color: #fff;
+            border: 2px solid #8b0000;
+            border-radius: 5px;
+        }
+        
+        .stat-name {
+            font-weight: bold;
+            font-size: 0.8em;
+            color: #8b0000;
+        }
+        
+        .stat-value {
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+        
+        .stat-modifier {
+            font-size: 1.2em;
+            color: #666;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .info-box {
+            background-color: #fff;
+            padding: 15px;
+            border: 1px solid #8b0000;
+            border-radius: 5px;
+        }
+        
+        .info-box h3 {
+            margin-top: 0;
+            color: #8b0000;
+            border-bottom: 1px solid #8b0000;
+            padding-bottom: 5px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            background-color: #fff;
+        }
+        
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #8b0000;
+        }
+        
+        th {
+            background-color: #8b0000;
+            color: #fff;
+            font-weight: bold;
+        }
+        
+        .feature-box {
+            background-color: #fff;
+            padding: 15px;
+            margin: 15px 0;
+            border: 2px solid #8b0000;
+            border-radius: 5px;
+        }
+        
+        .feature-box h4 {
+            color: #8b0000;
+            margin-top: 15px;
+        }
+        
+        .feature-box h4:first-child {
+            margin-top: 0;
+        }
+        
+        ul {
+            margin: 5px 0;
+        }
+        
+        .spell-slot {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #8b0000;
+            margin: 2px;
+            cursor: pointer;
+            background-color: #fff;
+            border-radius: 3px;
+        }
+        
+        .spell-slot.checked {
+            background-color: #8b0000;
+        }
+        
+        .quote {
+            font-style: italic;
+            text-align: center;
+            color: #8b0000;
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #fff;
+            border-left: 4px solid #8b0000;
+        }
+        
+        hr {
+            border: none;
+            border-top: 2px solid #8b0000;
+            margin: 20px 0;
+        }
+        
+        .hp-input {
+            width: 60px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            border: 2px solid #8b0000;
+            border-radius: 3px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>GIGGAROTA</h1>
+        <p class="subtitle">Cannibal Zealot of His Divine Shadow</p>
+        <p><strong>Level 1 Path of the Zealot Barbarian</strong> | Half-Orc | Chaotic Evil</p>
+    </div>
+
+    <div class="stat-block">
+        <div class="stat">
+            <div class="stat-name">STR</div>
+            <div class="stat-value">16</div>
+            <div class="stat-modifier">+3</div>
+        </div>
+        <div class="stat">
+            <div class="stat-name">DEX</div>
+            <div class="stat-value">14</div>
+            <div class="stat-modifier">+2</div>
+        </div>
+        <div class="stat">
+            <div class="stat-name">CON</div>
+            <div class="stat-value">15</div>
+            <div class="stat-modifier">+2</div>
+        </div>
+        <div class="stat">
+            <div class="stat-name">INT</div>
+            <div class="stat-value">8</div>
+            <div class="stat-modifier">-1</div>
+        </div>
+        <div class="stat">
+            <div class="stat-name">WIS</div>
+            <div class="stat-value">12</div>
+            <div class="stat-modifier">+1</div>
+        </div>
+        <div class="stat">
+            <div class="stat-name">CHA</div>
+            <div class="stat-value">10</div>
+            <div class="stat-modifier">+0</div>
+        </div>
+    </div>
+
+    <div class="info-grid">
+        <div class="info-box">
+            <h3>COMBAT STATS</h3>
+            <p><strong>Armor Class:</strong> 14 (Unarmored Defense)</p>
+            <p><strong>Initiative:</strong> +2</p>
+            <p><strong>Speed:</strong> 30 ft.</p>
+            <p><strong>Hit Dice:</strong> 1d12</p>
+            <p><strong>Proficiency Bonus:</strong> +2</p>
+        </div>
+        
+        <div class="info-box">
+            <h3>HIT POINTS</h3>
+            <p><strong>Maximum HP:</strong> 14</p>
+            <p><strong>Current HP:</strong> <input type="number" class="hp-input" id="current-hp" value="14" min="0" max="14"></p>
+            <p><strong>Temporary HP:</strong> 0</p>
+        </div>
+    </div>
+
+    <h3>SAVING THROWS</h3>
+    <table>
+        <tr>
+            <th>Ability</th>
+            <th>Modifier</th>
+            <th>Proficient</th>
+        </tr>
+        <tr>
+            <td>Strength</td>
+            <td>+5</td>
+            <td>✓</td>
+        </tr>
+        <tr>
+            <td>Dexterity</td>
+            <td>+2</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Constitution</td>
+            <td>+4</td>
+            <td>✓</td>
+        </tr>
+        <tr>
+            <td>Intelligence</td>
+            <td>-1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Wisdom</td>
+            <td>+1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Charisma</td>
+            <td>+0</td>
+            <td></td>
+        </tr>
+    </table>
+
+    <h3>SKILLS</h3>
+    <table>
+        <tr>
+            <th>Skill</th>
+            <th>Modifier</th>
+            <th>Proficient</th>
+        </tr>
+        <tr>
+            <td>Acrobatics (DEX)</td>
+            <td>+2</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Animal Handling (WIS)</td>
+            <td>+1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Arcana (INT)</td>
+            <td>-1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Athletics (STR)</td>
+            <td>+5</td>
+            <td>✓</td>
+        </tr>
+        <tr>
+            <td>Deception (CHA)</td>
+            <td>+0</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>History (INT)</td>
+            <td>-1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Insight (WIS)</td>
+            <td>+1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Intimidation (CHA)</td>
+            <td>+2</td>
+            <td>✓</td>
+        </tr>
+        <tr>
+            <td>Investigation (INT)</td>
+            <td>-1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Medicine (WIS)</td>
+            <td>+1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Nature (INT)</td>
+            <td>-1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Perception (WIS)</td>
+            <td>+3</td>
+            <td>✓</td>
+        </tr>
+        <tr>
+            <td>Performance (CHA)</td>
+            <td>+0</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Persuasion (CHA)</td>
+            <td>+0</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Religion (INT)</td>
+            <td>-1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Sleight of Hand (DEX)</td>
+            <td>+2</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Stealth (DEX)</td>
+            <td>+2</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Survival (WIS)</td>
+            <td>+3</td>
+            <td>✓</td>
+        </tr>
+    </table>
+
+    <h3>WEAPONS & ATTACKS</h3>
+    <table>
+        <tr>
+            <th>Weapon</th>
+            <th>Attack Bonus</th>
+            <th>Damage</th>
+            <th>Properties</th>
+        </tr>
+        <tr>
+            <td>Greataxe</td>
+            <td>+5</td>
+            <td>1d12+3 slashing</td>
+            <td>Heavy, Two-handed</td>
+        </tr>
+        <tr>
+            <td>Handaxe (×2)</td>
+            <td>+5</td>
+            <td>1d6+3 slashing</td>
+            <td>Light, Thrown (20/60)</td>
+        </tr>
+        <tr>
+            <td>Bite (Unarmed)</td>
+            <td>+5</td>
+            <td>1d4+3 piercing</td>
+            <td>Special (see Cannibal's Feast)</td>
+        </tr>
+    </table>
+
+    <h3>CLASS FEATURES</h3>
+    <div class="feature-box">
+        <h4>Rage (2/day)</h4>
+        <p><strong>Bonus Action:</strong> Enter a rage for 1 minute. While raging:</p>
+        <ul>
+            <li>+2 damage on melee attacks using Strength</li>
+            <li>Advantage on Strength checks and saving throws</li>
+            <li>Resistance to bludgeoning, piercing, and slashing damage</li>
+        </ul>
+        <p><em>Rage Tracking:</em> <span class="spell-slot" onclick="toggleCheckbox(this)"></span> <span class="spell-slot" onclick="toggleCheckbox(this)"></span></p>
+        
+        <h4>Unarmored Defense</h4>
+        <p>While not wearing armor, AC = 10 + DEX modifier + CON modifier (14)</p>
+        
+        <h4>Relentless Endurance (1/long rest)</h4>
+        <p>When reduced to 0 HP but not killed outright, drop to 1 HP instead.</p>
+        <p><em>Available:</em> <span class="spell-slot" onclick="toggleCheckbox(this)"></span></p>
+        
+        <h4>Savage Attacks</h4>
+        <p>When you score a critical hit with a melee weapon, roll one additional weapon damage die.</p>
+    </div>
+
+    <h3>RACIAL TRAITS</h3>
+    <div class="feature-box">
+        <h4>Darkvision</h4>
+        <p>See in dim light within 60 feet as if it were bright light, and in darkness as if it were dim light.</p>
+        
+        <h4>Menacing</h4>
+        <p>Proficiency in the Intimidation skill.</p>
+    </div>
+
+    <h3>EQUIPMENT</h3>
+    <div class="feature-box">
+        <ul>
+            <li>Greataxe (primary weapon)</li>
+            <li>2 Handaxes (thrown weapons)</li>
+            <li>Explorer's Pack (backpack, bedroll, mess kit, tinderbox, 10 torches, 10 days rations, waterskin, 50 ft. rope)</li>
+            <li>4 Javelins</li>
+            <li>Tattered robes (former prisoner garb)</li>
+            <li>Holy symbol of His Divine Shadow (worn as necklace)</li>
+            <li>Sharpened bone fragments (trophies)</li>
+        </ul>
+        <p><strong>Currency:</strong> 10 gp</p>
+    </div>
+
+    <div class="quote">
+        "Giggarota hungers... and the unworthy shall feed His Divine Shadow's servant."
+    </div>
+    
+    <hr>
+    
+    <h3>ROLEPLAYING NOTES</h3>
+    <div class="feature-box">
+        <h4>Personality Traits</h4>
+        <ul>
+            <li>Speaks in third person when discussing her hunger</li>
+            <li>Measures worth by nutritional value</li>
+            <li>Views combat as "meal preparation"</li>
+        </ul>
+        
+        <h4>Ideals</h4>
+        <p><strong>Devotion:</strong> His Divine Shadow's will must be fulfilled through consumption of the unworthy.</p>
+        
+        <h4>Bonds</h4>
+        <p>Giggarota is bound to His Divine Shadow's service, believing her cannibalism is a form of worship.</p>
+        
+        <h4>Flaws</h4>
+        <p>Cannot resist the urge to taste intelligent beings, even when tactically unwise.</p>
+    </div>
+    
+    <hr>
+    
+    <p style="text-align: center; font-style: italic; color: #8b0000; margin-top: 30px;">
+        "The dead do not require names. Only flavor."
+    </p>
+
+    <script>
+        function toggleCheckbox(element) {
+            element.classList.toggle('checked');
+        }
+        
+        // Save HP to localStorage when changed
+        const hpInput = document.getElementById('current-hp');
+        
+        hpInput.addEventListener('input', function() {
+            localStorage.setItem('giggarota_current_hp', this.value);
+        });
+        
+        // Load saved HP on page load
+        window.addEventListener('load', function() {
+            const savedHP = localStorage.getItem('giggarota_current_hp');
+            if (savedHP !== null) {
+                hpInput.value = savedHP;
+            }
+        });
+    </script>
+</body>
+</html>

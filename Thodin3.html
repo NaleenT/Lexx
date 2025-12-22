@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thodin - Level 3 Paladin</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f6f0 0%, #e8e4d8 100%);
+            color: #2c2416;
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #b8860b;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffd700 0%, #daa520 100%);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(184, 134, 11, 0.3);
+        }
+        
+        h1 {
+            margin: 5px 0;
+            color: #ffffff;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-style: italic;
+            color: #2c2416;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+        }
+        
+        .stat-block {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .stat {
+            text-align: center;
+            padding: 10px;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+            border: 2px solid #b8860b;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(184, 134, 11, 0.2);
+        }
+        
+        .stat-name {
+            font-weight: bold;
+            font-size: 0.8em;
+            color: #b8860b;
+        }
+        
+        .stat-value {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #2c2416;
+        }
+        
+        .stat-modifier {
+            font-size: 1.2em;
+            color: #666;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .info-box {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f6f0 100%);
+            padding: 15px;
+            border: 2px solid #b8860b;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(184, 134, 11, 0.2);
+        }
+        
+        .info-box h3 {
+            margin-top: 0;
+            color: #b8860b;
+            border-bottom: 2px solid #daa520;
+            padding-bottom: 5px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(184, 134, 11, 0.15);
+        }
+        
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #daa520;
+        }
+        
+        th {
+            background: linear-gradient(135deg, #b8860b 0%, #daa520 100%);
+            color: #fff;
+            font-weight: bold;
+        }
+        
+        .feature-box {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f6f0 100%);
+            padding: 15px;
+            margin: 15px 0;
+            border: 2px solid #b8860b;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(184, 134, 11, 0.2);
+        }
+        
+        .feature-box h4 {
+            color: #b8860b;
+            margin-top: 15px;
+        }
+        
+        .feature-box h4:first-child {
+            margin-top: 0;
+        }
+        
+        ul {
+            margin: 5px 0;
+        }
+        
+        .spell-slot {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #b8860b;
+            margin: 2px;
+            cursor: pointer;
+            background-color: #fff;
+            border-radius: 3px;
+        }
+        
+        .spell-slot.checked {
+            background: linear-gradient(135deg, #ffd700 0%, #daa520 100%);
+        }
+        
+        .quote {
+            font-style: italic;
+            text-align: center;
+            color: #2c2416;
+            margin: 20px 0;
+            padding: 15px;
+            background: linear-gradient(135deg, #ffd700 0%, #f0e68c 100%);
+            border-left: 4px solid #b8860b;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(184, 134, 11, 0.3);
+        }
+        
+        hr {
+            border: none;
+            border-top: 2px solid #daa520;
+            margin: 20px 0;
+        }
+        
+        .hp-input {
+            width: 60px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            border: 2px solid #b8860b;
+            border-radius: 3px;
+            padding: 5px;
+            background-color: #fff;
+        }
+        
+        .hp-input:focus {
+            outline: none;
+            border-color: #ffd700;
+            box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+        }
+        
+        .oath-spell {
+            background-color: #fff8dc;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>THODIN</h1>
+        <p class="subtitle">The Rogue Enforcer</p>
+        <p style="color: #2c2416; font-weight: bold;"><strong>Level 3 Oath of Vengeance Paladin</strong> | Warforged | Chaotic Good</p>
+    </div>
+
+    <div class="stat-block">
+        <div class="stat">
+            <div class="stat-name">STR</div>
+            <div class="stat-value">16</div>
+            <div class="stat-modifier">+3</div>
+        </div>
+        <div class="stat">
+            <div class="stat-name">DEX</div>
+            <div class="stat-value">10</div>
+            <div class="stat-modifier">+0</div>
+        </div>
+        <div class="stat">
+            <div class="stat-name">CON</div>
+            <div class="stat-value">14</div>
+            <div class="stat-modifier">+2</div>
+        </div>
+        <div class="stat">
+            <div class="stat-name">INT</div>
+            <div class="stat-value">8</div>
+            <div class="stat-modifier">-1</div>
+        </div>
+        <div class="stat">
+            <div class="stat-name">WIS</div>
+            <div class="stat-value">12</div>
+            <div class="stat-modifier">+1</div>
+        </div>
+        <div class="stat">
+            <div class="stat-name">CHA</div>
+            <div class="stat-value">14</div>
+            <div class="stat-modifier">+2</div>
+        </div>
+    </div>
+
+    <div class="info-grid">
+        <div class="info-box">
+            <h3>COMBAT STATS</h3>
+            <p><strong>Armor Class:</strong> 19 (Chain Mail + Shield + Integrated Protection)</p>
+            <p><strong>Initiative:</strong> +0</p>
+            <p><strong>Speed:</strong> 30 ft.</p>
+            <p><strong>Hit Dice:</strong> 3d10</p>
+            <p><strong>Proficiency Bonus:</strong> +2</p>
+        </div>
+        
+        <div class="info-box">
+            <h3>HIT POINTS</h3>
+            <p><strong>Maximum HP:</strong> 28</p>
+            <p><strong>Current HP:</strong> <input type="number" class="hp-input" id="current-hp" value="28" min="0" max="28"></p>
+            <p><strong>Temporary HP:</strong> 0</p>
+        </div>
+    </div>
+
+    <h3>SAVING THROWS</h3>
+    <table>
+        <tr>
+            <th>Ability</th>
+            <th>Modifier</th>
+            <th>Proficient</th>
+        </tr>
+        <tr>
+            <td>Strength</td>
+            <td>+3</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Dexterity</td>
+            <td>+0</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Constitution</td>
+            <td>+2</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Intelligence</td>
+            <td>-1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Wisdom</td>
+            <td>+3</td>
+            <td>✓</td>
+        </tr>
+        <tr>
+            <td>Charisma</td>
+            <td>+4</td>
+            <td>✓</td>
+        </tr>
+    </table>
+
+    <h3>SKILLS</h3>
+    <table>
+        <tr>
+            <th>Skill</th>
+            <th>Modifier</th>
+            <th>Proficient</th>
+        </tr>
+        <tr>
+            <td>Acrobatics (DEX)</td>
+            <td>+0</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Animal Handling (WIS)</td>
+            <td>+1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Arcana (INT)</td>
+            <td>-1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Athletics (STR)</td>
+            <td>+5</td>
+            <td>✓</td>
+        </tr>
+        <tr>
+            <td>Deception (CHA)</td>
+            <td>+2</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>History (INT)</td>
+            <td>-1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Insight (WIS)</td>
+            <td>+3</td>
+            <td>✓</td>
+        </tr>
+        <tr>
+            <td>Intimidation (CHA)</td>
+            <td>+4</td>
+            <td>✓</td>
+        </tr>
+        <tr>
+            <td>Investigation (INT)</td>
+            <td>-1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Medicine (WIS)</td>
+            <td>+1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Nature (INT)</td>
+            <td>-1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Perception (WIS)</td>
+            <td>+1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Performance (CHA)</td>
+            <td>+2</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Persuasion (CHA)</td>
+            <td>+4</td>
+            <td>✓</td>
+        </tr>
+        <tr>
+            <td>Religion (INT)</td>
+            <td>+1</td>
+            <td>✓</td>
+        </tr>
+        <tr>
+            <td>Sleight of Hand (DEX)</td>
+            <td>+0</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Stealth (DEX)</td>
+            <td>+0</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Survival (WIS)</td>
+            <td>+1</td>
+            <td></td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <h3>ATTACKS & EQUIPMENT</h3>
+    <table>
+        <tr>
+            <th>Weapon</th>
+            <th>Attack Bonus</th>
+            <th>Damage</th>
+        </tr>
+        <tr>
+            <td>Longsword</td>
+            <td>+5</td>
+            <td>1d8+3 slashing (1d10+3 two-handed)</td>
+        </tr>
+        <tr>
+            <td>Javelin</td>
+            <td>+5</td>
+            <td>1d6+3 piercing (range 30/120)</td>
+        </tr>
+    </table>
+
+    <div class="feature-box">
+        <h4>Equipment</h4>
+        <ul>
+            <li>Chain Mail (AC 16)</li>
+            <li>Shield (+2 AC)</li>
+            <li>Longsword</li>
+            <li>5 Javelins</li>
+            <li>Explorer's Pack</li>
+            <li>Insignia of rank</li>
+            <li>Common clothes</li>
+            <li>Holy Symbol (engraved on chassis)</li>
+            <li>Bug Bomb (single-use, creates 20-foot-radius Fog Cloud)</li>
+        </ul>
+        <p><strong>Currency:</strong> As needed</p>
+    </div>
+
+    <hr>
+
+    <h3>SPELLCASTING</h3>
+    <div class="feature-box">
+        <p><strong>Spellcasting Ability:</strong> Charisma</p>
+        <p><strong>Spell Save DC:</strong> 12</p>
+        <p><strong>Spell Attack Bonus:</strong> +4</p>
+        <p><strong>Spell Slots:</strong> 1st Level (3)</p>
+        <p><strong>Spell Slot Tracker:</strong> 
+            <span class="spell-slot"></span>
+            <span class="spell-slot"></span>
+            <span class="spell-slot"></span>
+        </p>
+    </div>
+
+    <h4>Prepared Spells</h4>
+    <table>
+        <tr>
+            <th>Level</th>
+            <th>Spell Name</th>
+            <th>Description</th>
+        </tr>
+        <tr class="oath-spell">
+            <td>1st</td>
+            <td><strong>Bane</strong> (Oath)</td>
+            <td>Up to 3 creatures within range must make a Charisma saving throw. On a failed save, whenever a target makes an attack roll or saving throw before the spell ends, the target must roll a d4 and subtract the number rolled from the attack roll or saving throw.</td>
+        </tr>
+        <tr class="oath-spell">
+            <td>1st</td>
+            <td><strong>Hunter's Mark</strong> (Oath)</td>
+            <td>You choose a creature you can see within range and mystically mark it as your quarry. Until the spell ends, you deal an extra 1d6 damage to the target whenever you hit it with a weapon attack.</td>
+        </tr>
+        <tr>
+            <td>1st</td>
+            <td><strong>Divine Favor</strong></td>
+            <td>Your prayer empowers you with divine radiance. Until the spell ends, your weapon attacks deal an extra 1d4 radiant damage on a hit.</td>
+        </tr>
+        <tr>
+            <td>1st</td>
+            <td><strong>Cure Wounds</strong></td>
+            <td>A creature you touch regains a number of hit points equal to 1d8 + your spellcasting ability modifier.</td>
+        </tr>
+        <tr>
+            <td>1st</td>
+            <td><strong>Thunderous Smite</strong></td>
+            <td>The first time you hit with a melee weapon attack during this spell's duration, your weapon rings with thunder and deals an extra 2d6 thunder damage. The target must make a Strength saving throw or be pushed 10 feet away and knocked prone.</td>
+        </tr>
+        <tr>
+            <td>1st</td>
+            <td><strong>Compelled Duel</strong></td>
+            <td>One creature that you can see within range must make a Wisdom saving throw. On a failed save, the creature is drawn to you, compelled by your divine demand. For the duration of the spell, which lasts up to 1 minute with concentration, the creature has disadvantage on attack rolls against creatures other than you, and must make a Wisdom saving throw each time it attempts to move to a space that is more than 30 feet away from you. [T21](1)</td>
+        </tr>
+        <tr>
+            <td>1st</td>
+            <td><strong>Shield of Faith</strong></td>
+            <td>A shimmering field of divine energy appears and surrounds a creature of your choice within range, granting it a +2 bonus to AC for the duration of the spell. This protective blessing lasts for up to 10 minutes with concentration and can be cast on yourself or an ally to provide enhanced defense during combat encounters or dangerous situations. [T21](1)</td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <div class="feature-box">
+        <h4>Background: Folk Hero</h4>
+        <p><strong>Rustic Hospitality:</strong> Since you come from the ranks of the common folk and have become a champion of their cause, commoners throughout the lands will provide you with shelter, food, and basic assistance. They will shield you from authorities or anyone else searching for you, though they will not risk their lives for you unless they have a particularly strong reason to do so. This feature reflects the deep connection you have with ordinary people who see you as their defender and symbol of hope against oppression.</p>
+        <p><em>Backstory: Thodin began his existence as an escaped enforcer or prototype soldier created by the Divine Order, designed to be nothing more than an obedient weapon in their arsenal of control. However, something remarkable happened during his service—he broke free from his mental conditioning and programming, developing genuine free will, independent thought, and a moral conscience. His subsequent public trial, where he spoke passionately about freedom and the rights of all sentient beings, and his dramatic escape from Divine Order custody made him a living legend—a Folk Hero to the oppressed across the systems who see him as proof that even the Order's perfect weapons can choose righteousness over tyranny.</em></p>
+    </div>
+
+    <div class="feature-box">
+        <h4>Class Features (Paladin - Oath of Vengeance)</h4>
+        <p><strong>Divine Sense:</strong> As an action, you can open your awareness to detect strong evil or holy forces. Until the end of your next turn, you know the location of any celestial, fiend, or undead within 60 feet of you that is not behind total cover. You know the type (celestial, fiend, or undead) of any being whose presence you sense, but not its identity. Within the same radius, you also detect the presence of any place or object that has been consecrated or desecrated. You can use this feature 3 times, and you regain all expended uses when you finish a long rest.</p>
+        <p><strong>Lay on Hands:</strong> Your blessed touch can heal wounds and restore vitality. You have a pool of healing power that replenishes when you take a long rest. With that pool, you can restore a total number of hit points equal to your paladin level × 5 (15 hit points at level 3). As an action, you can touch a creature and draw power from the pool to restore a number of hit points to that creature, up to the maximum amount remaining in your pool. Alternatively, you can expend 5 hit points from your pool of healing to cure the target of one disease or neutralize one poison affecting it.</p>
+        <p><strong>Fighting Style - Dueling:</strong> When you are wielding a melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon. This represents your focused martial training and ability to deliver devastating strikes with precision and control.</p>
+        <p><strong>Divine Smite:</strong> When you hit a creature with a melee weapon attack, you can expend one spell slot to deal radiant damage to the target, in addition to the weapon's damage. The extra damage is 2d8 for a 1st-level spell slot, plus 1d8 for each spell level higher than 1st, to a maximum of 5d8. The damage increases by 1d8 if the target is an undead or a fiend, to a maximum of 6d8. This holy power represents your divine wrath striking down your enemies.</p>
+        <p><strong>Divine Health:</strong> By 3rd level, the divine magic flowing through you makes you immune to disease. Your body has been sanctified by your oath and no mundane illness can affect you.</p>
+        <p><strong>Channel Divinity:</strong> You gain the ability to channel divine energy directly from your deity, using that energy to fuel magical effects. You start with two such effects: Abjure Enemy and Vow of Enmity. When you use your Channel Divinity, you choose which effect to create. You must then finish a short or long rest to use your Channel Divinity again.</p>
+        <p><strong>Channel Divinity: Abjure Enemy:</strong> As an action, you present your holy symbol and speak a prayer of denunciation, using your Channel Divinity. Choose one creature within 60 feet of you that you can see. That creature must make a Wisdom saving throw, unless it is immune to being frightened. Fiends and undead have disadvantage on this saving throw. On a failed save, the creature is frightened for 1 minute or until it takes any damage. While frightened, the creature's speed is 0, and it can't benefit from any bonus to its speed. On a successful save, the creature's speed is halved for 1 minute or until the creature takes any damage.</p>
+        <p><strong>Channel Divinity: Vow of Enmity:</strong> As a bonus action, you can utter a vow of enmity against a creature you can see within 10 feet of you, using your Channel Divinity. You gain advantage on attack rolls against the creature for 1 minute or until it drops to 0 hit points or falls unconscious. This represents your unwavering focus and determination to bring down a specific foe.</p>
+    </div>
+
+    <div class="feature-box">
+        <h4>Oath of Vengeance Tenets</h4>
+        <p>The Oath of Vengeance is a solemn commitment to punish those who have committed grievously evil acts. Thodin has adapted these tenets to his revolutionary cause:</p>
+        <p><strong>Fight the Greater Evil:</strong> The Divine Order and His Divine Shadow represent the ultimate tyranny in the universe. Faced with a choice of fighting my sworn foes or combating a lesser evil, I choose the greater evil—the systematic oppression and control imposed by the Order.</p>
+        <p><strong>No Mercy for the Wicked:</strong> Ordinary foes might win my mercy, but my sworn enemies—the architects and enforcers of the Divine Order's reign—do not. Those who perpetuate slavery and suppress freedom have forfeited their right to compassion.</p>
+        <p><strong>By Any Means Necessary:</strong> My qualms can't get in the way of exterminating my foes. I will use any weapon, any tactic, and any strategy—even deploying a bug bomb or other unconventional means—to achieve victory for the free peoples of the Light Universe.</p>
+        <p><strong>Restitution:</strong> If my foes wreak ruin on the world, it is because I failed to stop them. I must help those harmed by their misdeeds, and my ultimate mission is to restore freedom, dignity, and life to all beings oppressed by the Divine Order.</p>
+    </div>
+
+    <hr>
+
+    <h3>EQUIPMENT & GEAR</h3>
+    <ul>
+        <li><strong>Weapons:</strong> Longsword, Javelins (x5)</li>
+        <li><strong>Armor:</strong> Chain Mail (AC 16), Shield (+2 AC)</li>
+        <li><strong>Explorer's Pack:</strong> Includes a backpack, bedroll, mess kit, tinderbox, 10 torches, 10 days of rations, waterskin, and 50 feet of hempen rope</li>
+        <li><strong>Holy Symbol:</strong> Engraved directly onto his chassis, representing his oath and connection to his cause</li>
+        <li><strong>Rebel Insignia:</strong> A scarred Brunnen-G or resistance symbol worn as a badge of his revolutionary status</li>
+        <li><strong>"Bug Bomb":</strong> A single-use item that creates a 20-foot-radius sphere of thick fog (functions as the Fog Cloud spell), or a small tactical device that can be remotely detonated and interface with eletrical systems</li>
+        <li><strong>Set of Common Clothes:</strong> For situations where appearing as a common traveler is advantageous</li>
+    </ul>
+
+    <hr>
+
+    <h3>PERSONALITY & ROLEPLAY NOTES</h3>
+    <div class="feature-box">
+        <p><strong>Personality Traits:</strong> Thodin is passionate about freedom and speaks with conviction about the rights of all sentient beings. Despite being a constructed being, he has developed a strong sense of justice and morality that drives every action he takes.</p>
+        <p><strong>Ideals:</strong> Freedom above all. Every being deserves the right to choose their own path without tyrannical control. The Divine Order must be opposed at every turn.</p>
+        <p><strong>Bonds:</strong> Thodin feels a deep connection to all those who suffer under oppression. His trial and escape made him a symbol of hope, and he takes that responsibility seriously, knowing that countless beings look to him for inspiration.</p>
+        <p><strong>Flaws:</strong> His unwavering commitment to defeating the Divine Order can sometimes blind him to other concerns. He may take unnecessary risks or refuse compromise when he believes the cause of freedom is at stake.</p>
+    </div>
+
+    <hr>
+
+    <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 2px solid #8b4513;">
+        <p><em>Thodin - Level 3 Warforged Paladin (Oath of Vengeance)</em></p>
+        <p><em>"I stand for all who cannot stand. I fight for all who cannot fight. And I will not rest until the Divine Order falls."</em></p>
+    </div>
+
+</body>
+</html>

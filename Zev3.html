@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zev Bellringer - Level 3</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        h1 {
+            color: #8b4789;
+            text-align: center;
+            border-bottom: 3px solid #8b4789;
+            padding-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-top: -10px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #8b4789;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+            margin-top: 25px;
+        }
+
+        h3, h4 {
+            color: #a060a0;
+            margin-top: 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .stat-box {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .stat-box strong {
+            color: #8b4789;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: white;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #8b4789;
+            color: white;
+        }
+
+        .feature-box {
+            background-color: white;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .feature-box h4 {
+            margin-top: 0;
+            color: #8b4789;
+        }
+
+        ul {
+            line-height: 1.8;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+        }
+
+        ul li strong {
+            color: #8b4789;
+        }
+
+        ul li em {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        input[type="number"] {
+            padding: 5px;
+            border: 2px solid #8b4789;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        hr {
+            border: 0;
+            height: 2px;
+            background: #8b4789;
+            margin: 30px 0;
+        }
+
+        .quote {
+            background-color: #f9f3f9;
+            border-left: 5px solid #8b4789;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .quote p {
+            font-style: italic;
+            color: #8b4789;
+            font-size: 1.2em;
+            margin: 0;
+        }
+
+        .spell-slot {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #8b4789;
+            border-radius: 50%;
+            margin: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .spell-slot:hover {
+            background-color: #e8d4e8;
+        }
+
+        .spell-slot.checked {
+            background-color: #8b4789;
+        }
+
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Zev Bellringer</h1>
+    <div class="subtitle">
+        <strong>Race:</strong> Simic Hybrid | 
+        <strong>Class:</strong> Bard 3 (College of Eloquence) | 
+        <strong>Background:</strong> Entertainer ("Designated Companion") | 
+        <strong>Alignment:</strong> Chaotic Good
+    </div>
+
+    <hr>
+
+    <div class="stats-grid">
+        <div class="stat-box">
+            <strong>Hit Points</strong>
+            <input type="number" id="current-hp" value="24" min="0" max="24"> / 24
+        </div>
+        <div class="stat-box">
+            <strong>Armor Class</strong>
+            14
+        </div>
+        <div class="stat-box">
+            <strong>Initiative</strong>
+            +2
+        </div>
+        <div class="stat-box">
+            <strong>Speed</strong>
+            30 ft.
+        </div>
+        <div class="stat-box">
+            <strong>Proficiency Bonus</strong>
+            +2
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>Ability Scores</h2>
+    <table>
+        <tr>
+            <th>Ability</th>
+            <th>Score</th>
+            <th>Modifier</th>
+        </tr>
+        <tr>
+            <td><strong>Strength (STR)</strong></td>
+            <td>12</td>
+            <td>+1</td>
+        </tr>
+        <tr>
+            <td><strong>Dexterity (DEX)</strong></td>
+            <td>14</td>
+            <td>+2</td>
+        </tr>
+        <tr>
+            <td><strong>Constitution (CON)</strong></td>
+            <td>15</td>
+            <td>+2</td>
+        </tr>
+        <tr>
+            <td><strong>Intelligence (INT)</strong></td>
+            <td>8</td>
+            <td>-1</td>
+        </tr>
+        <tr>
+            <td><strong>Wisdom (WIS)</strong></td>
+            <td>10</td>
+            <td>+0</td>
+        </tr>
+        <tr>
+            <td><strong>Charisma (CHA)</strong></td>
+            <td>16</td>
+            <td>+3</td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <h2>Saving Throws</h2>
+    <div class="feature-box">
+        <ul>
+            <li><strong>Strength:</strong> +1</li>
+            <li><strong>Dexterity:</strong> +4 (Proficient)</li>
+            <li><strong>Constitution:</strong> +2</li>
+            <li><strong>Intelligence:</strong> -1</li>
+            <li><strong>Wisdom:</strong> +0</li>
+            <li><strong>Charisma:</strong> +5 (Proficient)</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h2>Skills</h2>
+    <div class="feature-box">
+        <p><em>(P) = Proficient | (E) = Expertise | (J) = Jack of All Trades</em></p>
+        <div class="skills-list">
+            <div><strong>Acrobatics (Dex):</strong> +4 (P)</div>
+            <div><strong>Animal Handling (Wis):</strong> +1 (J)</div>
+            <div><strong>Arcana (Int):</strong> +0 (J)</div>
+            <div><strong>Athletics (Str):</strong> +5 (E)</div>
+            <div><strong>Deception (Cha):</strong> +5 (P)</div>
+            <div><strong>History (Int):</strong> +0 (J)</div>
+            <div><strong>Insight (Wis):</strong> +1 (J)</div>
+            <div><strong>Intimidation (Cha):</strong> +5 (P)</div>
+            <div><strong>Investigation (Int):</strong> +0 (J)</div>
+            <div><strong>Medicine (Wis):</strong> +1 (J)</div>
+            <div><strong>Performance (Cha):</strong> +5 (P)</div>
+            <div><strong>Persuasion (Cha):</strong> +7 (E)</div>
+            <div><strong>Religion (Int):</strong> +0 (J)</div>
+            <div><strong>Sleight of Hand (Dex):</strong> +3 (J)</div>
+            <div><strong>Stealth (Dex):</strong> +3 (J)</div>
+            <div><strong>Survival (Wis):</strong> +1 (J)</div>
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>Attacks & Equipment</h2>
+
+    <div class="feature-box">
+        <h4>Weapons</h4>
+        <p><strong>Shortsword</strong></p>
+        <ul>
+            <li><strong>Attack Bonus:</strong> +4</li>
+            <li><strong>Damage:</strong> 1d6+2 Piercing</li>
+            <li><strong>Properties:</strong> Finesse, Light</li>
+        </ul>
+
+        <p><strong>Grappling Appendages</strong></p>
+        <ul>
+            <li><strong>Special:</strong> As a bonus action, you can try to grapple a creature within 10 feet. You have advantage and a +5 bonus on Strength (Athletics) checks made to grapple.</li>
+        </ul>
+    </div>
+
+    <div class="feature-box">
+        <h4>Armor & Gear</h4>
+        <ul>
+            <li><strong>Studded Leather Armor</strong></li>
+            <li><strong>Entertainer's Pack</strong></li>
+            <li><strong>Keepsake:</strong> A small, intricately carved wooden bird from her home planet</li>
+            <li><strong>Musical Instrument:</strong> Lute (or reflavored as her voice)</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h2>Features & Traits</h2>
+
+    <div class="feature-box">
+        <h4>Race: Simic Hybrid</h4>
+        <p><strong>Animal Enhancement (Level 1): Grappling Appendages</strong></p>
+        <p>You have two powerful, semi-prehensile tendrils. You can use a bonus action to try to grapple a creature within 10 feet. You have advantage on all Strength (Athletics) checks made to grapple.</p>
+    </div>
+
+    <div class="feature-box">
+        <h4>Bard Features</h4>
+        
+        <p><strong>Bardic Inspiration (d6)</strong></p>
+        <p>You have 3 inspiration dice per long rest. As a bonus action, you can inspire a creature, giving them a d6 they can add to one ability check, attack roll, or saving throw.</p>
+
+        <p><strong>Jack of All Trades</strong></p>
+        <p>You can add half your proficiency bonus (+1) to any ability check you make that doesn't already include your proficiency bonus.</p>
+
+        <p><strong>Song of Rest (d6)</strong></p>
+        <p>Creatures who spend Hit Dice to heal during a short rest with you regain an extra 1d6 HP.</p>
+
+        <p><strong>Expertise</strong></p>
+        <p>Your proficiency bonus is doubled for Persuasion and Athletics.</p>
+    </div>
+
+    <div class="feature-box">
+        <h4>Bard Archetype: College of Eloquence</h4>
+        
+        <p><strong>Silver Tongue</strong></p>
+        <p>When you make a Charisma (Persuasion) or Charisma (Deception) check, you can treat any roll of 9 or lower on the d20 as a 10.</p>
+
+        <p><strong>Unsettling Words</strong></p>
+        <p>As a bonus action, you can expend one use of your Bardic Inspiration. Choose one creature you can see within 60 feet. Roll the Bardic Inspiration die and subtract the number rolled from the target's next saving throw before your next turn.</p>
+    </div>
+
+    <hr>
+
+    <h2>Spellcasting</h2>
+
+    <div class="stats-grid">
+        <div class="stat-box">
+            <strong>Spellcasting Ability</strong>
+            Charisma
+        </div>
+        <div class="stat-box">
+            <strong>Spell Save DC</strong>
+            13
+        </div>
+        <div class="stat-box">
+            <strong>Spell Attack Bonus</strong>
+            +5
+        </div>
+    </div>
+
+    <div class="feature-box">
+        <h4>Cantrips (2 Known)</h4>
+        <ul>
+            <li><strong>Vicious Mockery:</strong> Target makes Wisdom save or takes 1d4 psychic damage and has disadvantage on its next attack roll. <em>Her primary offensive cantrip—cutting remarks that wound and weaken.</em></li>
+            <li><strong>Mage Hand:</strong> Create a spectral hand that can manipulate objects, open unlocked doors, or retrieve items from up to 30 feet away. <em>Essential utility for interacting with strange technology from a safe distance.</em></li>
+        </ul>
+    </div>
+
+    <div class="feature-box">
+        <h4>Spell Slots</h4>
+        <p><strong>1st Level (4 slots):</strong></p>
+        <div>
+            <span class="spell-slot" onclick="toggleSlot(this)"></span>
+            <span class="spell-slot" onclick="toggleSlot(this)"></span>
+            <span class="spell-slot" onclick="toggleSlot(this)"></span>
+            <span class="spell-slot" onclick="toggleSlot(this)"></span>
+        </div>
+        <p><strong>2nd Level (2 slots):</strong></p>
+        <div>
+            <span class="spell-slot" onclick="toggleSlot(this)"></span>
+            <span class="spell-slot" onclick="toggleSlot(this)"></span>
+        </div>
+    </div>
+
+    <div class="feature-box">
+        <h4>1st Level Spells</h4>
+        <ul>
+            <li><strong>Charm Person:</strong> Make a humanoid view you as a friendly acquaintance for 1 hour. <em>The quintessential spell for infiltration and information gathering.</em></li>
+            <li><strong>Dissonant Whispers:</strong> Whisper a terrible secret that deals 3d6 psychic damage and forces the target to use its reaction to move away from you. <em>Perfect for battlefield control and synergizes with Unsettling Words.</em></li>
+            <li><strong>Healing Word:</strong> As a bonus action, restore 1d4+3 hit points to a creature within 60 feet. <em>Bring downed allies back into the fight while keeping your action free.</em></li>
+            <li><strong>Heroism:</strong> Touch a creature to grant immunity to fear and temporary hit points equal to your Charisma modifier each round for 1 minute. <em>Great support spell to bolster allies.</em></li>
+        </ul>
+    </div>
+
+    <div class="feature-box">
+        <h4>2nd Level Spells</h4>
+        <ul>
+            <li><strong>Calm Emotions:</strong> Suppress strong emotions in a 20-foot radius, potentially ending a fight before it starts or negating charm/fear effects on allies. <em>A powerful tool for de-escalation.</em></li>
+            <li><strong>Suggestion:</strong> Suggest a course of action to a creature, which must obey if it fails a Wisdom save (provided the suggestion sounds reasonable). Lasts up to 8 hours. <em>Pairs incredibly well with Silver Tongue.</em></li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <div class="quote">
+        <p>"I'm beautiful!"</p>
+    </div>
+
+    <script>
+        // Save HP to localStorage when changed
+        const hpInput = document.getElementById('current-hp');
+
+        hpInput.addEventListener('input', function() {
+            localStorage.setItem('zev_lv3_current_hp', this.value);
+        });
+
+        // Load saved HP on page load
+        window.addEventListener('load', function() {
+            const savedHP = localStorage.getItem('zev_lv3_current_hp');
+            if (savedHP !== null) {
+                hpInput.value = savedHP;
+            }
+        });
+
+        // Function to toggle spell slot
+        function toggleSlot(element) {
+            element.classList.toggle('checked');
+        }
+    </script>
+
+</body>
+</html>
