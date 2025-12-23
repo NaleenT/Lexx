@@ -540,6 +540,17 @@
         <p><em>Thodin - Level 3 Warforged Paladin (Oath of Vengeance)</em></p>
         <p><em>"I stand for all who cannot stand. I fight for all who cannot fight. And I will not rest until the Divine Order falls."</em></p>
     </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const spellSlots = document.querySelectorAll('.spell-slot');
+        
+        spellSlots.forEach(slot => {
+            slot.addEventListener('click', function() {
+                this.classList.toggle('checked');
+            });
+        });
+    });
+</script>
 
 </body>
 </html>
